@@ -1,0 +1,53 @@
+2023.09.18 17:03:31 INFO  Started: Metals version 1.0.1 in folders '/Users/sebastiankaeser/Study/WApp-Madm' for client Visual Studio Code 1.82.1.[0m
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.21.2 by Redgate
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.FlywayExecutor execute
+INFO: Database: jdbc:h2:file:/Users/sebastiankaeser/Study/WApp-Madm/.metals/metals (H2 2.1)
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.006s)
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": << Empty Schema >>
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "1 - Create tables"
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "2 - Server discovery"
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "3 - Jar symbols"
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "4 - Fingerprints"
+Sept. 18, 2023 5:03:31 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.008s)
+2023.09.18 17:03:31 INFO  time: initialize in 0.32s[0m
+2023.09.18 17:03:32 WARN  Build server is not auto-connectable.[0m
+2023.09.18 17:04:05 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:04:08 INFO  no build target found for /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala. Using presentation compiler with project's scala-library version: 3.3.0[0m
+Sept. 18, 2023 5:04:08 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2023.09.18 17:05:44 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:05:49 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:05:57 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:06:00 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:06:09 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:06:11 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:10:08 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:10:18 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:38:44 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+Sept. 18, 2023 5:38:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 290
+2023.09.18 17:38:50 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:38:56 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:38:59 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:39:05 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:39:09 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:40:24 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:40:27 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 17:40:37 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.18 18:07:26 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m

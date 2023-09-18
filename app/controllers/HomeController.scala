@@ -36,6 +36,17 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       Ok(out.toString)
     }
 
+    def about() = Action {
+      Ok(views.html.about())
+    }
+
+    def test() = Action {
+      val name = "John Doe"
+      val age = 32
+      val email = "test@test.com"
+      Ok(views.html.test(email,age,name))
+    }
+
   /**
    * Create an Action to render an HTML page.
    *
@@ -45,7 +56,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    */
   def index() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
-    
   }
 
   }
