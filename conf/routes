@@ -4,9 +4,10 @@
 # ~~~~
 
 # An example controller showing a sample home page
+ + nocsrf
 GET     /                           controllers.HomeController.index()
 
-GET     /newGame/:num                     controllers.HomeController.newGame(num:Int)
+POST /newGame                     controllers.HomeController.newGame()
 
 GET     /turn/:player                     controllers.HomeController.turn(player:String)
 

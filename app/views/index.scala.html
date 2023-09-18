@@ -1,5 +1,11 @@
 @()
 
 @main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+  <h1>Welcome to Mensch Ärgere dich nicht!</h1>
+  <form method="POST" action="/newGame">
+    <label for="anzahl">Anzahl Spieler</label>
+    <input type="number" id="anzahl" name="anzahl" required>
+    <input type="submit" value="Spiel starten">
+  </form>
+
 }

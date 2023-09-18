@@ -1,4 +1,4 @@
-package controllers
+id: file://<WORKSPACE>/app/controllers/HomeController.scala:[758..761) in Input.VirtualFile("file://<WORKSPACE>/app/controllers/HomeController.scala", "package controllers
 
 import javax.inject._
 import play.api._
@@ -20,13 +20,13 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
 
 
 
-     def newGame() = Action {
-      request => 
-        var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
-        gameController.newGame(req)
-        Ok(gameController.player.toString())
+     def newGame(num:Int) = Action {
+      println(requestBody)
+      gameController.newGame(num)
+      Ok(gameController.player.toString())
      }
 
+     def 
 
     def turn(playerE:String) = Action {
       player = playerE
@@ -72,3 +72,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
   }
 
   }
+")
+file://<WORKSPACE>/app/controllers/HomeController.scala:31: error: expected identifier; obtained def
+    def turn(playerE:String) = Action {
+    ^

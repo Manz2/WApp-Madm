@@ -1,4 +1,4 @@
-package controllers
+id: file://<WORKSPACE>/app/controllers/HomeController.scala:[1257..1263) in Input.VirtualFile("file://<WORKSPACE>/app/controllers/HomeController.scala", "package controllers
 
 import javax.inject._
 import play.api._
@@ -18,15 +18,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     gameController.newGame(1)
 
 
-
-
-     def newGame() = Action {
-      request => 
-        var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
-        gameController.newGame(req)
-        Ok(gameController.player.toString())
+     def newGame(num:Int) = Action {
+      gameController.newGame(num)
+      Ok(gameController.player.toString())
      }
-
 
     def turn(playerE:String) = Action {
       player = playerE
@@ -45,13 +40,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       Ok(views.html.about())
     }
 
-
-    private def requestParamsToString(request: Request[AnyContent]): String = {
-      request.body.asFormUrlEncoded match {
-        case Some(map) => map.map { case (k, v) => s"$k -> ${v.mkString}" }.mkString(", ")
-        case None => "no request parameter"
-      }
-    }
+    private def return
 
     def test() = Action {
       val name = "John Doe"
@@ -72,3 +61,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
   }
 
   }
+")
+file://<WORKSPACE>/app/controllers/HomeController.scala:43: error: expected identifier; obtained return
+    private def return
+                ^
