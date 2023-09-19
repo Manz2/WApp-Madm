@@ -1,0 +1,31 @@
+@(controller: de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl.Controller)
+<html>
+    <body>
+        <h1>Felder</h1>
+        <h2>Home-Field</h2>
+        @for(row <- 0 until controller.home.data.size) {
+            <span style="border: solid black 1px">
+                @{if (controller.home.data(row).toString() == "") {"__"} else controller.home.data(row).toString()} 
+            </span>
+        }
+        <h2>Player-Field</h2>
+        @for(row <- 0 until controller.player.data.size) {
+            <span style="border: solid black 1px">
+                @{if (controller.player.data(row).toString() == "") {"__"} else controller.player.data(row).toString()} 
+            </span>
+        }
+        <h2>Field-Field</h2>
+        @for(row <- 0 until controller.field.data.size) {
+            <span style="border: solid black 1px">
+                @{if (controller.field.data(row).toString() == "") {"__"} else controller.field.data(row).toString()} 
+            </span>
+        }
+        <br/>
+        <br/>
+
+        <form method="POST" action="/turn">
+            <label for="spieler">Würfeln</label>
+            <input type="spieler" id="spieler" name="spieler" required>
+            <input type="submit" value="Würfeln">
+    </body>
+</html>

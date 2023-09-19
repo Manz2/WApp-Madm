@@ -1,0 +1,22 @@
+@(controller: de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl.Controller, diceResult: String, player: String)
+<html>
+    <body>
+        <h1>Gratualtion</h1>
+        <p>
+            <b>@player</b> hat eine <b>@diceResult</b> gewürfelt
+        </p>
+        <h1>
+            Derzeitiger Spielstand
+        </h1>
+        @for(row <- 0 until controller.field.data.size) {
+            <span style="border: solid black 1px">
+                @{if (controller.field.data(row).toString() == "") {"__"} else controller.field.data(row).toString()} 
+            </span>
+        }
+    <form method="POST" action="/go">
+        <label for="figur">Spieler auswählen</label>
+        <input type="figur" id="figur" name="figur" required>
+        <input type="submit" value="Auswählen">
+    </body>
+
+</html>

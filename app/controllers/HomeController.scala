@@ -4,6 +4,7 @@ import javax.inject._
 import play.api._
 import play.api.mvc._
 import de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl._
+import java.lang.ProcessBuilder.Redirect
 //import de.htwg.se.malefiz.Malefiz
 //import de.htwg.se.malefiz.controller.controllerComponent._
 /**
@@ -24,34 +25,43 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       request => 
         var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
         gameController.newGame(req)
-        Ok(gameController.player.toString())
+        Ok(views.html.board(gameController))
+     }
+     
+     def showFields() = Action {
+        Ok(views.html.board(gameController))
      }
 
 
-    def turn(playerE:String) = Action {
-      player = playerE
-      diceVal = gameController.throwDice
-      val out = "du hast eine " + diceVal.toString() + " gewürfelt mit welcher Figur möchtest du gehen?"
-      Ok(out.toString)
+    def turn() = Action {
+      request => 
+        var req = request.body.asFormUrlEncoded.get("spieler").head
+        player = req.toUpperCase()
+        if (gameController.nochAlle(player)){
+          if (gameController.Alleda(player)){
+            Redirect("/fields")
+          }
+          else {
+            Ok(views.html.diceFail())
+          }
+      } else {
+        diceVal = gameController.throwDice
+        Ok(views.html.turn(gameController,diceVal.toString(),player))
+      }     
     }
 
-    def go(fig:Int) = Action{
-      gameController.move(gameController.getFigureFromField(player,fig),diceVal)
-      val out = gameController.field.toString() + gameController.player.toString();
-      Ok(out.toString)
+    def go() = Action{
+      request => 
+        var req = request.body.asFormUrlEncoded.get("figur").head
+        var fig = req.toInt
+        gameController.move(gameController.getFigureFromField(player,fig),diceVal)
+        Redirect("/fields")
     }
 
     def about() = Action {
       Ok(views.html.about())
     }
 
-
-    private def requestParamsToString(request: Request[AnyContent]): String = {
-      request.body.asFormUrlEncoded match {
-        case Some(map) => map.map { case (k, v) => s"$k -> ${v.mkString}" }.mkString(", ")
-        case None => "no request parameter"
-      }
-    }
 
     def test() = Action {
       val name = "John Doe"
@@ -67,7 +77,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
    * will be called when the application receives a `GET` request with
    * a path of `/`.
    */
-  def index() = Action { implicit request: Request[AnyContent] =>
+  def startGame() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.index())
   }
 
