@@ -9,6 +9,8 @@ GET     /                           controllers.HomeController.about()
 
 GET     /startGame                  controllers.HomeController.startGame()
 
+GET /fullBoard                      controllers.HomeController.fullBoard()
+
 
 POST /newGame                     controllers.HomeController.newGame()
 

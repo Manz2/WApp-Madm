@@ -50,6 +50,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       }     
     }
 
+    def fullBoard() = Action {
+      Ok(views.html.fullBoard())
+    }
+
     def go() = Action{
       request => 
         var req = request.body.asFormUrlEncoded.get("figur").head
