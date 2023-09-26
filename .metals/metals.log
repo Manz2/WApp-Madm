@@ -367,3 +367,61 @@ INFO: Schema "PUBLIC" is up to date. No migration necessary.
 2023.09.25 18:19:57 INFO  time: code lens generation in 2.77s[0m
 Sept. 25, 2023 6:19:59 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
 WARNING: Unmatched cancel notification for request id 8
+2023.09.25 19:32:21 INFO  Shutting down server[0m
+2023.09.25 19:32:21 INFO  shutting down Metals[0m
+2023.09.25 19:32:21 INFO  Exiting server[0m
+2023.09.26 17:46:04 INFO  Started: Metals version 1.0.1 in folders '/Users/sebastiankaeser/Study/WApp-Madm' for client Visual Studio Code 1.82.2.[0m
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.21.2 by Redgate
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.FlywayExecutor execute
+INFO: Database: jdbc:h2:file:/Users/sebastiankaeser/Study/WApp-Madm/.metals/metals (H2 2.1)
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.013s)
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": 4
+Sept. 26, 2023 5:46:04 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "PUBLIC" is up to date. No migration necessary.
+2023.09.26 17:46:04 INFO  time: initialize in 0.58s[0m
+2023.09.26 17:46:06 WARN  Build server is not auto-connectable.[0m
+2023.09.26 17:46:06 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 17:46:09 INFO  no build target found for /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala. Using presentation compiler with project's scala-library version: 3.3.0[0m
+Sept. 26, 2023 5:46:09 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 8
+2023.09.26 17:46:10 INFO  time: code lens generation in 1.15s[0m
+2023.09.26 17:46:10 INFO  time: code lens generation in 1.15s[0m
+2023.09.26 17:46:10 INFO  time: code lens generation in 4.12s[0m
+2023.09.26 17:46:10 INFO  time: code lens generation in 1.07s[0m
+2023.09.26 17:56:32 INFO  Shutting down server[0m
+2023.09.26 17:56:32 INFO  shutting down Metals[0m
+2023.09.26 17:56:32 INFO  Exiting server[0m
+2023.09.26 17:56:42 INFO  Started: Metals version 1.0.1 in folders '/Users/sebastiankaeser/Study/WApp-Madm' for client Visual Studio Code 1.82.2.[0m
+Sept. 26, 2023 5:56:42 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.21.2 by Redgate
+Sept. 26, 2023 5:56:42 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+Sept. 26, 2023 5:56:42 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+Sept. 26, 2023 5:56:43 PM org.flywaydb.core.FlywayExecutor execute
+INFO: Database: jdbc:h2:file:/Users/sebastiankaeser/Study/WApp-Madm/.metals/metals (H2 2.1)
+Sept. 26, 2023 5:56:43 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.008s)
+Sept. 26, 2023 5:56:43 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": 4
+Sept. 26, 2023 5:56:43 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "PUBLIC" is up to date. No migration necessary.
+2023.09.26 17:56:43 INFO  time: initialize in 0.39s[0m
+2023.09.26 17:56:44 WARN  Build server is not auto-connectable.[0m
+2023.09.26 18:19:17 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:19:18 INFO  no build target found for /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala. Using presentation compiler with project's scala-library version: 3.3.0[0m
+Sept. 26, 2023 6:19:34 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 25
+2023.09.26 18:19:35 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:20:42 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:20:46 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:20:50 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:20:51 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:20:57 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m

@@ -50,8 +50,12 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       }     
     }
 
-    def fullBoard() = Action {
-      Ok(views.html.fullBoard())
+    def fullBoardWurf() = Action {
+      Ok(views.html.fullBoardWurf())
+    }
+
+    def fullBoardGo() = Action {
+      Ok(views.html.fullBoardGo())
     }
 
     def go() = Action{
