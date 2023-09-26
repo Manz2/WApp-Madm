@@ -1,78 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        .container{
-            text-align: center;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(11, 30px); 
-            grid-gap: 10px; 
-            padding: 20px; 
-            background: #FFFEBA;
-            border: solid red 1px;
-            border-radius: 5%;
-            box-shadow: red 0px 0px 4px;
-        }
-
-        /* CSS für die Zellen */
-        .grid-item {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #000; /* Rand um jede Zelle */
-            text-align: center;
-            line-height: 30px;
-            font-size: 14px;
-            border-radius: 99%;
-            background: #FFFFFF;
-        }
-
-        .grid-item:hover {
-            background: lightgray;
-            cursor: pointer;
-        }
-        
-        .hidden {
-            border: none;
-            background: #FFFEBA;;
-        }
-        .hidden:hover {
-            background: #FFFEBA;;
-            cursor: default;
-        }
-
-        .p1{
-            background-color: #009DFF;
-        }
-        
-        .p2{
-            background-color: #FF0000;
-        }
-
-        .p3{
-            background-color: #FFFC00;
-        }
-        .p4{
-            background-color: #00BF02;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-
-    </style>
+   <meta charset="UTF-8"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gameborard</title>
+   <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/fullBoard.css")">
 </head>
 <body>
-    <h1>Spielfeld</h1>
+    <h1 id="heading">Spielfeld</h1>
     <div class="container">
     <div class="grid-container">
-        <div class="grid-item p1" id="p1-home-1"></div>
+        <div class="grid-item p1" id="p1-home-1"><img /></div>
         <div class="grid-item p1" id="p1-home-2"></div>
         <div class="grid-item hidden"></div>
         <div class="grid-item hidden"></div>
@@ -98,13 +36,13 @@
         
         <div class="grid-item hidden"></div>
         <div class="grid-item hidden"></div>
-        <div class="grid-item hidden"></div>
+        <div class="grid-item hidden player-name">A</div>
         <div class="grid-item hidden"></div>
         <div class="grid-item" id="field-37" >37</div>
         <div class="grid-item p2" id="p2-final-2"></div>
         <div class="grid-item" id="field-3" >3</div>
         <div class="grid-item hidden"></div>
-        <div class="grid-item hidden"></div>
+        <div class="grid-item hidden player-name">B</div>
         <div class="grid-item hidden"></div>
         <div class="grid-item hidden"></div>
         
@@ -170,13 +108,13 @@
 
         <div class="grid-item hidden"></div>
         <div class="grid-item hidden"></div>
-        <div class="grid-item hidden"></div>
+        <div class="grid-item hidden player-name">C</div>
         <div class="grid-item hidden"></div>
         <div class="grid-item" id="field-23">23</div>
         <div class="grid-item p3" id="p3-final-2"></div>
         <div class="grid-item" id="field-17">17</div>
         <div class="grid-item hidden"></div>
-        <div class="grid-item hidden"></div>
+        <div class="grid-item hidden player-name">D</div>
         <div class="grid-item hidden"></div>
         <div class="grid-item hidden"></div>
         
@@ -205,6 +143,17 @@
         <div class="grid-item p4" id="p4-home-3"></div>
         <div class="grid-item p4" id="p4-home-4"></div>
         
+    </div>
+    <div id="inputs">
+        <h3>Spieler A</h3>
+        <p>Du hast eine <b>5</b> gewürfelt</p>
+        <form action="/fullBoard" method="POST">
+            <div class="form-div">
+                <label for="choose-figure">Suche dir eine Figur aus</label>
+                <input type="number" name="choose-figure" id="choose-player" value="1" min="1" max="4" steps="1">
+            </div>
+            <input type="submit" class="button" value="Würfeln">
+        </form>
     </div>
 </div>
 </body>
