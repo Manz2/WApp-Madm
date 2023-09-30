@@ -1,6 +1,10 @@
 body {
     background-color: #eee;;    
     background: rgb(255,254,186);
+background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%);
+    background-image: url("../images/wuerfel-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .container{
     text-align: center;
@@ -74,10 +78,10 @@ body {
 }
 
 #inputs {
-    background-color: #ddd;;
     border-radius: 20px;
     padding: 10px;
     box-shadow: #000 0px 0px 4px;
+    background-color:  lightblue;
     height: 240px;
     margin: auto 0;
     margin-left: 30px;
