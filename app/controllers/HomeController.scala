@@ -26,7 +26,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       request => 
         var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
         gameController.newGame(req)
-        Ok(views.html.board(gameController))
+        Ok(views.html.fullBoardWurf(gameController))
      }
      
      def showFields() = Action {
@@ -40,14 +40,14 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
         player = req.toUpperCase()
         if (gameController.nochAlle(player)){
           if (gameController.Alleda(player)){
-            Redirect("/fields")
+            Redirect("/fullBoardWurf")
           }
           else {
-            Ok(views.html.diceFail())
+            Ok(views.html.diceFail(gameController))
           }
       } else {
         diceVal = gameController.throwDice
-        Ok(views.html.turn(gameController,diceVal.toString(),player))
+        Ok(views.html.fullBoardGo(gameController,diceVal.toString(),player))
       }     
     }
 
@@ -56,7 +56,12 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     }
 
     def fullBoardGo() = Action {
-      Ok(views.html.fullBoardGo())
+      request => 
+        var req = request.body.asFormUrlEncoded.get("figur").head
+        var fig = req.toInt
+        gameController.move(gameController.getFigureFromField(player,fig),diceVal)
+
+        Redirect("/fullBoardWurf")
     }
 
     def go() = Action{
@@ -64,7 +69,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
         var req = request.body.asFormUrlEncoded.get("figur").head
         var fig = req.toInt
         gameController.move(gameController.getFigureFromField(player,fig),diceVal)
-        Redirect("/fields")
+        Redirect("/fullBoardWurf")
     }
 
     def about() = Action {

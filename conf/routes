@@ -9,14 +9,14 @@ GET     /                           controllers.HomeController.about()
 
 GET     /startGame                  controllers.HomeController.startGame()
 
-GET     /fullBoardWurf                  controllers.HomeController.fullBoardWurf()
+GET /fullBoardWurf                  controllers.HomeController.fullBoardWurf()
 
-GET     /fullBoardGo                  controllers.HomeController.fullBoardGo()
+POST  /fullBoardGo                  controllers.HomeController.fullBoardGo()
 
 
 POST /newGame                       controllers.HomeController.newGame()
 
- POST /turn                         controllers.HomeController.turn()
+POST /turn                         controllers.HomeController.turn()
 
 POST /go                            controllers.HomeController.go()
 
