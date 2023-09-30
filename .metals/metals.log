@@ -425,3 +425,71 @@ WARNING: Unmatched cancel notification for request id 25
 2023.09.26 18:20:50 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
 2023.09.26 18:20:51 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
 2023.09.26 18:20:57 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.26 18:55:39 INFO  Shutting down server[0m
+2023.09.26 18:55:39 INFO  shutting down Metals[0m
+2023.09.26 18:55:39 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:833)
+[0m
+2023.09.26 18:55:39 INFO  Exiting server[0m
+2023.09.30 17:01:57 INFO  Started: Metals version 1.0.1 in folders '/Users/sebastiankaeser/Study/WApp-Madm' for client Visual Studio Code 1.82.2.[0m
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.21.2 by Redgate
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.FlywayExecutor execute
+INFO: Database: jdbc:h2:file:/Users/sebastiankaeser/Study/WApp-Madm/.metals/metals (H2 2.1)
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.009s)
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": 4
+Sept. 30, 2023 5:01:57 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "PUBLIC" is up to date. No migration necessary.
+2023.09.30 17:01:57 INFO  time: initialize in 0.38s[0m
+2023.09.30 17:01:59 WARN  Build server is not auto-connectable.[0m
+2023.09.30 17:03:34 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:03:36 INFO  no build target found for /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala. Using presentation compiler with project's scala-library version: 3.3.0[0m
+Sept. 30, 2023 5:03:37 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1
+2023.09.30 17:35:35 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:40:28 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+Sept. 30, 2023 5:40:31 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 102
+2023.09.30 17:40:35 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:40:56 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:41:37 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:49:46 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:49:49 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:49:51 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:49:53 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:49:59 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:50:01 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:50:02 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:50:05 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:50:11 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:50:41 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:51:00 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:51:04 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:30 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:37 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:39 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:41 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:43 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:49 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:52:51 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:53:08 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:53:18 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:53:20 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:53:22 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.09.30 17:53:29 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m

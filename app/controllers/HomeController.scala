@@ -16,7 +16,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val gameController = new Controller()
     var diceVal = 0;
     var player = "A"
-    gameController.newGame(1)
+    gameController.newGame(4)
+    println(gameController.field.data.length)
 
 
 
@@ -51,7 +52,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     }
 
     def fullBoardWurf() = Action {
-      Ok(views.html.fullBoardWurf())
+      Ok(views.html.fullBoardWurf(gameController))
     }
 
     def fullBoardGo() = Action {
