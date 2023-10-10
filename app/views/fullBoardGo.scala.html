@@ -168,11 +168,13 @@ controller.home.data
         <form action="/fullBoardGo" method="POST">
             <div class="form-div">
                 <label for="figur">Suche dir eine Figur aus</label>
-                <input type="number" name="figur" id="figur" value="1" min="1" max="4" steps="1">
             </div>
+            <div><input type="number" name="figur" id="figur" value="1" min="1" max="4" steps="1"></div>
             <input type="submit" class="button" value="Fahren">
+            <div id="box"><img class="img" src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one"></div>
         </form>
-        <img src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one">
+        
+        
     </div>
 </div>
 </body>
