@@ -165,8 +165,6 @@ controller.home.data
         
     </div>
     <div id="inputs">
-        <h3>Spieler @currentPlayer</h3>
-        <p>Du hast eine <b>@diceResult</b> gewürfelt</p>
         <form action="/fullBoardGo" method="POST">
             <div class="form-div">
                 <label for="figur">Suche dir eine Figur aus</label>
@@ -174,6 +172,7 @@ controller.home.data
             </div>
             <input type="submit" class="button" value="Fahren">
         </form>
+        <img src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one">
     </div>
 </div>
 </body>

@@ -69,7 +69,8 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
 #heading {
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 100px;
+    margin-bottom: 40px;
+    color: lightgray;
 }
 
 .player-name {
@@ -79,50 +80,49 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
 
 #inputs {
     border-radius: 20px;
-    padding: 10px;
-    box-shadow: #000 0px 0px 4px;
-    background-color:  lightblue;
+    padding: 20px;
+    box-shadow: 0px 0px 4px #000;
+    background-color: lightblue;
     height: 240px;
-    margin: auto 0;
-    margin-left: 30px;
     width: 300px;
+    margin-left: 20px;
 }
-
-.form-div {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-}
-
-.form-div input{
-    width: 40%;
-    margin: 20px auto;
-    text-align: center;
-}
-
 
 .wurf-form {
     display: flex;
-    flex-direction:column;
-    justify-content: space-around;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
-.wurf-form input {
-    width: 100px;
-    margin: 10px auto;
+.wurf-form label,
+.wurf-form select {
+    margin-bottom: 10px;
+}
+
+.wurf-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 50%;
     text-align: center;
 }
 
 .button {
-    border-radius: 3px;;
-    width: 100px;
-    background-color: #fff;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
     border: none;
-    padding: 10px;
-}
-.button:hover {
+    border-radius: 5px;
     cursor: pointer;
-    background-color: #FFFEBA;
 }
+
+.button:hover {
+    background-color: #45a049;
+}
+
+img {
+    width: 50%;
+    padding: 20px;
+    margin-left: 80px;
+  }
 

@@ -167,10 +167,16 @@ controller.home.data
         <div id="inputs">
             <form action="/turn" method="POST" class="wurf-form">
                 <label for="spieler">Welcher Spieler ist dran?</label>
-                <input type="text" name="spieler" id="spieler" value="">
+                <select name="spieler" id="spieler">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
                 <input type="submit" class="button" value="Würfeln">
             </form>
         </div>
+        
     </div>
 </body>
 
