@@ -5,6 +5,7 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
     background-image: url("../images/wuerfel-background.png");
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Ubuntu', sans-serif;
 }
 .container{
     text-align: center;
