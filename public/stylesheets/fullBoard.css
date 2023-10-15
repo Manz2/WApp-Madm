@@ -133,6 +133,16 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
     cursor: pointer;
 }
 
+.button-2 {
+    left: 100px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .button:hover {
     background-color: #45a049;
 }

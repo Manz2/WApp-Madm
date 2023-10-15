@@ -583,3 +583,20 @@ WARNING: Unmatched cancel notification for request id 1515
 2023.09.30 19:00:00 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
 2023.09.30 19:00:18 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
 2023.09.30 19:00:28 WARN  no build target for: /Users/sebastiankaeser/Study/WApp-Madm/app/controllers/HomeController.scala[0m
+2023.10.15 16:21:19 INFO  Started: Metals version 1.0.1 in folders '/Users/sebastiankaeser/Study/WApp-Madm' for client Visual Studio Code 1.83.1.[0m
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.21.2 by Redgate
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.FlywayExecutor execute
+INFO: Database: jdbc:h2:file:/Users/sebastiankaeser/Study/WApp-Madm/.metals/metals (H2 2.1)
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.024s)
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": 4
+Okt. 15, 2023 4:21:19 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Schema "PUBLIC" is up to date. No migration necessary.
+2023.10.15 16:21:19 INFO  time: initialize in 0.48s[0m
+2023.10.15 16:21:20 WARN  Build server is not auto-connectable.[0m
