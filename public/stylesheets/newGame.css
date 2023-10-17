@@ -6,7 +6,7 @@ body {
 }
 .image-wrapper{
     background-image: url("../images/wuerfel-background.png");
-    height: 50vh;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -54,7 +54,7 @@ h1 {
 .form-group input {
     margin-bottom: 20px;
     height: 40px;
-    width: 100px;
+    width: 120px;
     border-radius: 10px;
     border: none;
     font-size: large;
@@ -66,6 +66,7 @@ h1 {
 
 
 .button {
+    size: auto;
     background-color: #4caf50;
     color: white;
     border: none;
