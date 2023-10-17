@@ -50,6 +50,7 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
 .hidden:hover {
     border: none;
     cursor: default;
+    background: #FFFEBA;;
 }
 
 .p1{ /* Spieler A */
