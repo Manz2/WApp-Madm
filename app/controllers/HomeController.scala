@@ -24,13 +24,24 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
      }
 
     def turn(playerE:String) = Action {
-      player = playerE
-      diceVal = gameController.throwDice
-      val out = "du hast eine " + diceVal.toString() + " gewürfelt mit welcher Figur möchtest du gehen?"
-      Ok(out.toString)
+        if (gameController.nochAlle(player)){
+          if (gameController.Alleda(player)){
+            val out = gameController.field.toString() + gameController.player.toString();
+            Ok(out.toString)          }
+          else {
+            Ok("keine 6 gewürfelt")
+          }
+      } else {
+        player = playerE
+        diceVal = gameController.throwDice
+        val out = "du hast eine " + diceVal.toString() + " gewürfelt mit welcher Figur möchtest du gehen?"
+        Ok(out.toString)
+      }    
+      
     }
 
     def go(fig:Int) = Action{
+      print("output: "+player + fig + diceVal)
       gameController.move(gameController.getFigureFromField(player,fig),diceVal)
       val out = gameController.field.toString() + gameController.player.toString();
       Ok(out.toString)
