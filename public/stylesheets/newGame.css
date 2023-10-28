@@ -74,3 +74,13 @@ h1 {
     cursor: pointer;
     font-size: medium;
 }
+
+@media(max-width: 1500px) {
+    body {
+    height: 100vh; /* Die volle Höhe des Viewports verwenden */
+    background-image: url("../images/wuerfel-background.png");
+    background-size: cover; /* Das Bild wird so skaliert, dass der gesamte Hintergrund abgedeckt wird */
+    background-position: center center; /* Das Bild wird zentriert positioniert */
+    background-attachment: fixed; /* Das Bild bleibt beim Scrollen fixiert */
+    }
+}

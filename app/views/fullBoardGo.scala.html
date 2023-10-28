@@ -46,6 +46,7 @@ controller.home.data
         </div>
       </nav>
     <h1 id="heading">Spielfeld</h1>
+    <h1 class="short-message">Bildschrim zu klein</h1>
     <div class="container">
         <div class="grid-container">
             <div class="grid-item p1" id="p1-home-1">@player(0)</div>
@@ -195,7 +196,7 @@ controller.home.data
             </div>
             <div><input type="number" name="figur" id="figur" value="1" min="1" max="4" steps="1"></div>
             <input type="submit" class="button" value="Fahren">
-            <div id="box"><img class="img" src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one"></div>
+            <div id="box"><img class="img" src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one" /></div>
         </form>
     </div>
     <div class="row">
