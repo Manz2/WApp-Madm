@@ -17,11 +17,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     var diceVal = 0;
     var player = "A"
     gameController.newGame(4)
-    println(gameController.field.data.length)
-
-
-
-
      def newGame() = Action {
       request => 
         var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
