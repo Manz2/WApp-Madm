@@ -1,16 +1,3 @@
-/* Dunkles Bootstrap-Theme */
-
-/* Dunkler Hintergrund für den Body */
-body {
-    background-color: #1c1c1c !important;
-    color: #fff;
-}
-
-/* Hintergrundfarbe für die Navbar */
-.navbar.bg-body-tertiary, .navbar {
-    background-color: #1e1e1e !important;
-}
-
 /* Navbar-Links */
 .navbar.bg-body-tertiary .nav-link, .navbar-nav .nav-link {
     color: #fff !important;
@@ -18,7 +5,7 @@ body {
 }
 
 /* Ändere die Farbe für Links beim Schweben */
-.navbar.bg-body-tertiary .nav-link:hover, .navbar-nav .nav-link:hover {
+.navbar.bg-body-tertiary .nav-link:hover, .navbar-nav:hover .nav-link:hover {
     color: #ec800d !important; /* Zum Beispiel: Hellblau (#66afe9) beim Schweben */
 }
 
@@ -27,7 +14,7 @@ body {
     color: #fff !important;
 }
 /* Aktive Nav-Link Farbe beim hovern*/
-.navbar.bg-body-tertiary .nav-link.active:hover, .navbar-nav .nav-link.active {
+.navbar.bg-body-tertiary .nav-link.active:hover, .navbar-nav:hover .nav-link.active:hover {
     color: #ec800d !important;
 }
 
