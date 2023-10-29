@@ -212,3 +212,39 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
         display: none;
     }
 }
+
+
+
+/* Bootstrap Tuning */
+
+.form-group {
+    background: lightblue;
+    margin: auto 40px;
+    padding: 20px 10px;
+    margin-bottom: 20px; 
+    border-radius: 10px;
+}
+
+.form-group .btn {
+    margin-top: 10px;
+}
+
+.dice-gif {
+    padding-top: 10px;
+    height: 80px ;
+}
+
+#box-dynamic {
+    text-align: center;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+}
+.img-dynamic {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+}

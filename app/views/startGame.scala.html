@@ -33,6 +33,7 @@
       <div class="image-wrapper">
       <div class="container">
         <h1>Welcome to Mensch Ärgere dich nicht!</h1>
+        <!--
         <form method="POST" action="/newGame">
           <div class="form-group">
             <label for="anzahl">Wähle die Anzahl Spieler aus</label>
@@ -40,6 +41,21 @@
             <input type="submit" class="button" value="Spiel starten">
           </div>
         </form>
+      -->
+      <h1 class="short-message">Bildschrim zu klein</h1>
+      <form method="POST" action="/newGame">
+        <div class="form-group">
+          <label for="anzahl">Anzahl Spieler</label>
+          <select name="anzahl" class="form-control" id="anzahl">
+            <option selected disabled></option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option><strong>4</strong></option>
+          </select>
+          <input type="submit" class="btn btn-primary" value="Spiel starten"/>
+        </div>
+      </form>
       </div>
       </div>
     </body>

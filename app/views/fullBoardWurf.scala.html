@@ -189,6 +189,7 @@ controller.home.data
             <div class="grid-item p4" id="p4-home-4">@player(11)</div>
 
         </div>
+        <!---
         <div id="inputs">
             <form action="/turn" method="POST" class="wurf-form">
                 <label for="spieler">Welcher Spieler ist dran?</label>
@@ -202,22 +203,28 @@ controller.home.data
                 <div id="box"><img id="gif" class="dice-gif" src="@routes.Assets.versioned(s"images/dice/dice.gif")" alt="dice" /></div>
             </form>
         </div>
+      -->
         
-        <div class="row">
-          <div class="col d-flex justify-content-end align-items-end">
-              <div>
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Spiel Abbrechen
-                  </button>
-              </div>
-          </div>
-      </div>
+
+      <form method="POST" action="/turn">
+        <div class="form-group">
+          <label for="spieler">Welcher Spieler ist dran?</label>
+          <select name="spieler" class="form-control" id="spieler">
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+            <option>D</option>
+          </select>
+          <input type="submit" class="btn btn-primary" value="Würfeln"/>
+          <div id="box"><img id="gif" class="dice-gif" src="@routes.Assets.versioned(s"images/dice/dice.gif")" alt="dice" /></div>
+        </div>
+      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Spiel Abbrechen
+      </button>
+      </form>
         
         
-    </div>
-</body>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -228,11 +235,14 @@ controller.home.data
         Wollen Sie das Spiel wirklich abbrechen? Dadurch verlieren Sie Ihren aktuellen Fortschritt.
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nicht abbrechen</button>
-        <a href="/" class="btn btn-primary">Abbrechen</a>
+        <button type="button" class="btn btn-outline" data-bs-dismiss="modal">Nicht abbrechen</button>
+        <a href="/" class="btn btn-danger">Abbrechen</a>
       </div>
     </div>
   </div>
-</div>
+</div>   </div>
+</body>
+<!-- Modal -->
+
 
 </html>

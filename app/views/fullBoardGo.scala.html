@@ -189,6 +189,7 @@ controller.home.data
             <div class="grid-item p4" id="p4-home-4">@player(11)</div>
         
     </div>
+    <!---
     <div id="inputs">
         <form action="/fullBoardGo" method="POST">
             <div class="form-div">
@@ -199,15 +200,24 @@ controller.home.data
             <div id="box"><img class="img" src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one" /></div>
         </form>
     </div>
-    <div class="row">
-      <div class="col d-flex justify-content-end align-items-end">
-          <div>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Spiel Abbrechen
-              </button>
-          </div>
-      </div>
-  </div>
+  -->
+
+  <form method="POST" action="/fullBoardGo">
+    <div class="form-group">
+      <label for="figur">Welcher Spieler ist dran?</label>
+      <select name="figur" class="form-control" id="figur">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+      <input type="submit" class="btn btn-primary" value="Fahren"/>
+      <div id="box-dynamic"><img class="img-dynamic" src="@routes.Assets.versioned(s"images/dice/" + diceResult + ".svg")" alt="one" /></div>
+    </div>
+  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Spiel Abbrechen
+  </button>
+  </form>
     
     
 </div>
