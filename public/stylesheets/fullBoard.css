@@ -218,11 +218,16 @@ background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%
 /* Bootstrap Tuning */
 
 .form-group {
+    width: 200px;
+    height: 250px;
     background: lightblue;
     margin: auto 40px;
     padding: 20px 10px;
     margin-bottom: 20px; 
     border-radius: 10px;
+}
+option{
+    text-align: center;
 }
 
 .form-group .btn {
