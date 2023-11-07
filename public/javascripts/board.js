@@ -21,9 +21,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         if (diceResult === 6) {
             shakeBtn.style.backgroundColor = "green"; // Button grün machen
+            const ipt1 = document.createElement('input')
+            const ipt2 = document.createElement('input')
+
+            ipt1.type = "hidden"
+            ipt1.name = "diceResult"
+            ipt1.value = diceResult
+
+            ipt2.type = "hidden"
+            ipt2.name = "figur"
+            ipt2.value = "1"
+
+            form.append(ipt1)
+            form.append(ipt2)
 
             setTimeout(() => {
-                this.submit(); // Das Formular wird nach 1 Sekunde abgesendet
+                form.submit(); // Das Formular wird nach 1 Sekunde abgesendet
             }, 1000);
         }
         else {

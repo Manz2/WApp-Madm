@@ -11,6 +11,10 @@ GET     /startGame                  controllers.HomeController.startGame()
 
 GET /fullBoardWurf                  controllers.HomeController.fullBoardWurf()
 
+GET /fullBoard                     controllers.HomeController.fullBoard()
+
+POST /newMove                       controllers.HomeController.newMove()
+
 POST  /fullBoardGo                  controllers.HomeController.fullBoardGo()
 
 

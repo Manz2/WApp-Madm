@@ -5,6 +5,7 @@ import play.api._
 import play.api.mvc._
 import de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl._
 import java.lang.ProcessBuilder.Redirect
+import play.api.libs.json._
 //import de.htwg.se.malefiz.Malefiz
 //import de.htwg.se.malefiz.controller.controllerComponent._
 /**
@@ -27,6 +28,49 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
      def showFields() = Action {
         Ok(views.html.board(gameController))
      }
+
+    /**
+      * 05-JS
+      */
+   def newMove() = Action { request =>
+    println("request",request.body.asFormUrlEncoded.get("spieler").flatMap(_.headOption).head)
+  request.body.asFormUrlEncoded match {
+    case Some(formData) =>
+      // Extrahieren Sie die Werte aus der Map. Verwenden Sie headOption, um den ersten Wert zu erhalten oder None, falls nicht vorhanden.
+      val spieler = formData.get("spieler").flatMap(_.headOption)
+      val diceValue = formData.get("diceResult").flatMap(_.headOption)
+      val figur = formData.get("figur").flatMap(_.headOption)
+
+      println(spieler)
+      println(diceValue)
+      println(figur)
+
+
+      (spieler, diceValue, figur) match {
+        case (Some(s), Some(dv), Some(f)) =>
+          println(s"player: $s, diceValue: $dv, figure: $f")
+          // Hier könnten Sie Ihre Logik implementieren.
+          gameController.move(gameController.getFigureFromField(s,f.toInt),dv.toInt)
+          println(gameController.field.data)
+          println(gameController.player.data)
+          println(gameController.home.data)
+          Ok("Move processed")
+          Redirect("/fullBoard")
+        case _ =>
+          BadRequest("Missing form data")
+      }
+      
+    case None =>
+      BadRequest("Expecting form-urlencoded data")
+  }
+}
+
+     def fullBoard() = Action {
+        Ok(views.html.fullBoard(gameController))
+     }
+
+
+     //////
 
 
     def turn() = Action {
