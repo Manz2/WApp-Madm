@@ -33,7 +33,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       * 05-JS
       */
    def newMove() = Action { request =>
-    println("request",request.body.asFormUrlEncoded.get("spieler").flatMap(_.headOption).head)
   request.body.asFormUrlEncoded match {
     case Some(formData) =>
       // Extrahieren Sie die Werte aus der Map. Verwenden Sie headOption, um den ersten Wert zu erhalten oder None, falls nicht vorhanden.
@@ -41,19 +40,20 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       val diceValue = formData.get("diceResult").flatMap(_.headOption)
       val figur = formData.get("figur").flatMap(_.headOption)
 
-      println(spieler)
-      println(diceValue)
-      println(figur)
-
-
       (spieler, diceValue, figur) match {
         case (Some(s), Some(dv), Some(f)) =>
-          println(s"player: $s, diceValue: $dv, figure: $f")
-          // Hier könnten Sie Ihre Logik implementieren.
-          gameController.move(gameController.getFigureFromField(s,f.toInt),dv.toInt)
-          println(gameController.field.data)
-          println(gameController.player.data)
-          println(gameController.home.data)
+          
+        if (gameController.nochAlle(player)){
+            if (dv.toInt != 6){
+              println("keine 6 Gewürfelt") //hier muss dann eine Fehlermeldung kommen (keine 6 gewürfelt)
+            } else {
+              println("6 gewürfelt")
+              gameController.raus(s)
+            }
+        } else {
+          println("move " + spieler +" "+ figur)
+          gameController.move(gameController.getFigureFromField(s,f.toInt),dv.toInt) //hier muss die Figur ausgewählt werden
+        }
           Ok("Move processed")
           Redirect("/fullBoard")
         case _ =>
