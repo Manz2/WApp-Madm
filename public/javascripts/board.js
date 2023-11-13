@@ -1,6 +1,9 @@
+
+const API_BASE_URL = "http://localhost:9000";
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    getFields();
+    const fields = loadFields()
      
     const form = document.querySelector("#form-1");
 
@@ -58,12 +61,46 @@ const rollDice = () => {
     return Math.floor(Math.random() * 6) + 1;
 }
 
-const getFields = () => {
-    fetch("http://localhost:9000/fieldsJson")
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-    })
+
+const loadFields = async () => {
+    const req = await fetch(API_BASE_URL + "/fieldsJson")
+    const response = await req.json()
+    const homefield = response.homeField
+    const playerField = response.playerField
+    const mainField = response.fieldField
+    console.log({homefield,playerField,mainField})
+    for(let i = 1; i <= 40; i++){
+        const id = "#field-" + i
+        const value = mainField[i-1]
+        //document.querySelector(id).innerHTML = i-1 ENUMERATION
+        document.querySelector(id).innerHTML = value
+    }
+
+    for (let i=1; i < 5; i++){
+        for (let j=1; j < 5; j++){
+            const id = `#p${j}-home-${i}`
+            const index = (i + (j-1) * 4) - 1
+            const value = playerField[index]
+            const ref = document.querySelector(id)
+            ref.innerHTML = value
+        }
+    }
+
+    for (let i=1; i < 5; i++){
+        for (let j=1; j < 5; j++){
+            const id = `#p${j}-final-${i}`
+            const index = (i + (j-1) * 4) - 1
+            const value = homefield[index]
+            const ref = document.querySelector(id)
+            ref.innerHTML = value
+        }
+    }
+
+
+
+
+
+
 }
 
 const changeGifValue = (url,value) => {
