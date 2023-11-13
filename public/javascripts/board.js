@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+
+    getFields();
      
     const form = document.querySelector("#form-1");
 
@@ -54,6 +56,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 const rollDice = () => {
     return Math.floor(Math.random() * 6) + 1;
+}
+
+const getFields = () => {
+    fetch("http://localhost:9000/fieldsJson")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
 }
 
 const changeGifValue = (url,value) => {

@@ -6,6 +6,7 @@ import play.api.mvc._
 import de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl._
 import java.lang.ProcessBuilder.Redirect
 import play.api.libs.json._
+import play.api.libs.json.Json
 //import de.htwg.se.malefiz.Malefiz
 //import de.htwg.se.malefiz.controller.controllerComponent._
 /**
@@ -83,7 +84,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
           }
           else {
             Ok(views.html.diceFail(gameController))
-          }
+        }
       } else {
         diceVal = gameController.throwDice
         Ok(views.html.fullBoardGo(gameController,diceVal.toString(),player))
@@ -115,14 +116,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       Ok(views.html.about())
     }
 
-
-    def test() = Action {
-      val name = "John Doe"
-      val age = 32
-      val email = "test@test.com"
-      Ok(views.html.test(email,age,name))
-    }
-
   /**
    * Create an Action to render an HTML page.
    *
@@ -133,5 +126,31 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
   def startGame() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.startGame())
   }
+
+
+  def getFields() = Action {
+    println(gameController.player.data)
+    val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
+    val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
+    val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
+    Ok(Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson))
+  }
+  /* TODO
+  def updateFields() = Action(parse.json) { request =>
+  request.body.validate[(Vector[String], Vector[String], Vector[String])].map {
+    case (playerData, homeData, fieldData) =>
+      // Hier den gameController aktualisieren
+      gameController.player.data = playerData
+      gameController.home.data = homeData
+      gameController.field.data = fieldData
+
+      // Antwort senden
+      Ok(Json.obj("status" -> "success"))
+  }.recoverTotal {
+    e => BadRequest(Json.obj("status" -> "error", "message" -> JsError.toJson(e)))
+  }
+}
+*/
+
 
   }
