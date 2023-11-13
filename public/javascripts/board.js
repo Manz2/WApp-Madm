@@ -3,7 +3,11 @@ const API_BASE_URL = "http://localhost:9000";
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-    const fields = loadFields()
+     loadFields()
+     console.log(isFirstMove(1))
+     console.log(isFirstMove(2))
+     console.log(isFirstMove(3))
+     console.log(isFirstMove(4))
      
     const form = document.querySelector("#form-1");
 
@@ -61,6 +65,31 @@ const rollDice = () => {
     return Math.floor(Math.random() * 6) + 1;
 }
 
+const pushChange = (diceValue,player,figure) => {
+    fetch(API_BASE_URL + "/fieldsJson",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+           // TODO 
+        })
+    })
+}
+
+const isFirstMove = async (player) => {
+    const req = await fetch(API_BASE_URL + "/fieldsJson")
+    const response = await req.json()
+    const homeField = response.homeField
+    const startIndex= player * 4
+    for (let i = startIndex; i <=startIndex+4; i++) {
+        if (typeof homeField[i] !== 'string' ||homeField[i].length > 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
 
 const loadFields = async () => {
     const req = await fetch(API_BASE_URL + "/fieldsJson")
