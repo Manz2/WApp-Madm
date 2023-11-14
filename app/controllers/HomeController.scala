@@ -135,22 +135,30 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
     Ok(Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson))
   }
-  /* TODO
+  TODO
   def updateFields() = Action(parse.json) { request =>
-  request.body.validate[(Vector[String], Vector[String], Vector[String])].map {
-    case (playerData, homeData, fieldData) =>
-      // Hier den gameController aktualisieren
-      gameController.player.data = playerData
-      gameController.home.data = homeData
-      gameController.field.data = fieldData
+    println(request.body)
+    //-1 wenn keine irguren dieses spielers auf dem feld sind
+  request.body.validate[Map[String, String]].map {
+  case dataMap =>
+    val player = dataMap.getOrElse("player", "")
+    val figure = dataMap.getOrElse("figure", "")
+    val diceVal = dataMap.getOrElse("diceVal", "")
 
-      // Antwort senden
-      Ok(Json.obj("status" -> "success"))
-  }.recoverTotal {
-    e => BadRequest(Json.obj("status" -> "error", "message" -> JsError.toJson(e)))
-  }
+    if(gameController.nochAlle(player) && diceVal.toInt ==6){
+      gameController.raus(player)
+    } else {
+      gameController.move(gameController.getFigureFromField(player,figure.toInt),diceVal.toInt)
+    }
+    
+    // Antwort senden
+    Ok(Json.obj("status" -> "success"))
+}.recoverTotal {
+  e => BadRequest(Json.obj("status" -> "error", "message" -> JsError.toJson(e)))
 }
-*/
+
+}
+
 
 
   }

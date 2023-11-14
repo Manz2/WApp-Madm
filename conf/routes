@@ -32,6 +32,8 @@ GET /fields                         controllers.HomeController.showFields()
 
 GET /fieldsJson                      controllers.HomeController.getFields()
 
+POST /fieldsJson                     controllers.HomeController.updateFields()
+
 
 # POST /fieldsJson                     controllers.HomeController.updateFields()
 
