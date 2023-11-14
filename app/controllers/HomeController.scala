@@ -138,7 +138,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
   TODO
   def updateFields() = Action(parse.json) { request =>
     println(request.body)
-    //-1 wenn keine irguren dieses spielers auf dem feld sind
   request.body.validate[Map[String, String]].map {
   case dataMap =>
     val player = dataMap.getOrElse("player", "")
