@@ -28,8 +28,9 @@ const loadFields = async () => {
     for(let i = 1; i <= 40; i++){
         const id = "#field-" + i
         const value = mainField[i-1]
-        document.querySelector(id).innerHTML = i-1 
-        //document.querySelector(id).innerHTML = value
+        console.log({id,value})
+        //document.querySelector(id).innerHTML = i-1 
+        document.querySelector(id).innerHTML = value
     }
 
     for (let i=1; i < 5; i++){
@@ -111,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const figureSelect = document.querySelector("#figure-select");
     const diceFailButton = document.querySelector("#diceFail-button");
     const diceFailLabel = document.querySelector("#diceFail-label");
+    const diceImage = document.querySelector("#dice-image");
 
 
     loadFields() // Initialisiere das Spielfeld
@@ -135,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return;
         }
         figureForm.style.display = "block";
+        diceImage.src = assignDiceImage(diceValue)
         playerForm.style.display = "none";
     })
 
@@ -156,19 +159,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
 });
 
 
-
-
-
-
-
-
-
-
-
-const changeGifValue = (url,value) => {
-    const parts = url.split("/");
-    parts[parts.length-1] = value;
-    const newUrl = parts.join("/");
-
-    return newUrl;
+const assignDiceImage = (diceValue) => {
+    return `/assets/images/dice/${diceValue}.svg`
 }
+
+
+
+
+
+
+
+
