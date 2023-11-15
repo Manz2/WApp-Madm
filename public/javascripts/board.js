@@ -1,108 +1,35 @@
-
 const API_BASE_URL = "http://localhost:9000";
 
-document.addEventListener("DOMContentLoaded", function(event) {
+/* Globale Variablen */
+let diceValue = 0;
+let player = 0;
+let figure = 0;
 
-     loadFields()
-     console.log(isFirstMove(1))
-     console.log(isFirstMove(2))
-     console.log(isFirstMove(3))
-     console.log(isFirstMove(4))
-     
-    const form = document.querySelector("#form-1");
+let fieldData = null
 
-    form.addEventListener("submit", function(event) {
-        const shakeBtn = document.querySelector(".shake-btn"); // Referenz auf den Button mit der Klasse ".shake-btn"
-        
-        event.preventDefault(); // Verhindert das Absenden des Formulars
-
-        const diceResult = rollDice();
-
-        const imgElement = document.querySelector("#gif-1");
-
-        console.log(diceResult)
-
-        const oldVal = imgElement.src;
-
-        imgElement.src = changeGifValue(imgElement.src, diceResult + ".svg");
-        setTimeout(() => imgElement.src = oldVal, 800)
-
-        const ipt1 = document.createElement('input')
-        const ipt2 = document.createElement('input')
-
-        ipt1.type = "hidden"
-        ipt1.name = "diceResult"
-        ipt1.value = diceResult
-
-        ipt2.type = "hidden"
-        ipt2.name = "figur"
-        ipt2.value = "1"
-
-        form.append(ipt1)
-        form.append(ipt2)
-
-
-        if (diceResult === 6) {
-            shakeBtn.style.backgroundColor = "green"; // Button grün machen
-
-
-            setTimeout(() => {
-                form.submit(); // Das Formular wird nach 1 Sekunde abgesendet
-            }, 1000);
-        }
-        else {
-            shakeBtn.classList.remove("short-shake");
-            void shakeBtn.offsetWidth;
-            shakeBtn.classList.add("short-shake");
-            setTimeout(() => {
-                form.submit(); // Das Formular wird nach 1 Sekunde abgesendet
-            }, 1000);
-        }
-    });
-});
-
-const rollDice = () => {
-    return Math.floor(Math.random() * 6) + 1;
+const player2num = {
+    "A" : 0,
+    "B" : 1,
+    "C" : 2,
+    "D" : 3
 }
 
-const pushChange = (diceValue,player,figure) => {
-    fetch(API_BASE_URL + "/fieldsJson",{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-           // TODO 
-        })
-    })
-}
 
-const isFirstMove = async (player) => {
-    const req = await fetch(API_BASE_URL + "/fieldsJson")
-    const response = await req.json()
-    const homeField = response.homeField
-    const startIndex= player * 4
-    for (let i = startIndex; i <=startIndex+4; i++) {
-        if (typeof homeField[i] !== 'string' ||homeField[i].length > 0) {
-            return false;
-        }
-    }
-    return true;
 
-}
-
+/* Helper Functions */
 const loadFields = async () => {
     const req = await fetch(API_BASE_URL + "/fieldsJson")
     const response = await req.json()
+    fieldData = response
     const homefield = response.homeField
     const playerField = response.playerField
     const mainField = response.fieldField
-    console.log({homefield,playerField,mainField})
+    //console.log({homefield,playerField,mainField})
     for(let i = 1; i <= 40; i++){
         const id = "#field-" + i
         const value = mainField[i-1]
-        //document.querySelector(id).innerHTML = i-1 ENUMERATION
-        document.querySelector(id).innerHTML = value
+        document.querySelector(id).innerHTML = i-1 
+        //document.querySelector(id).innerHTML = value
     }
 
     for (let i=1; i < 5; i++){
@@ -125,12 +52,118 @@ const loadFields = async () => {
         }
     }
 
-
-
-
-
-
 }
+
+const isFirstMove = (player) => {
+    const playerNum = player2num[player]
+    if (fieldData === null) {return true}
+    const playerField = fieldData.playerField
+    const startIndex= playerNum * 4
+    const endIndex = startIndex + 4
+    //console.log({startIndex,endIndex,playerField,player})
+    for(let i = startIndex; i < endIndex; i++){
+        if (playerField[i] == "") {return false}
+    }
+    
+    return true;
+}
+
+const rollDice = () => {
+    const diceValue = Math.floor(Math.random() * 6) + 1;
+    return diceValue;
+}
+const pushChange = (diceValue,player,figure) => {
+    console.log({diceValue,player,figure})
+    fetch(API_BASE_URL + "/fieldsJson",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            player : player,
+            figure : figure,
+            diceVal : diceValue.toString()
+        })
+    })
+    .then(res => res.json().then(data => console.log(data)))
+    .catch(err => console.log(err))
+}
+
+
+
+
+
+
+
+
+
+// Warte bis DOM geladen wurde
+document.addEventListener("DOMContentLoaded", function(event) {
+
+
+    /* Extract DOM Elements */
+    const playerForm = document.querySelector("#player-select-form");
+    const figureForm = document.querySelector("#figure-select-form");
+    const diceFailForm = document.querySelector("#diceFail-form");
+    const wurfButton = document.querySelector("#wurf-button");
+    const figureButton = document.querySelector("#figure-button");
+    const playerSelect = document.querySelector("#player-select");
+    const figureSelect = document.querySelector("#figure-select");
+    const diceFailButton = document.querySelector("#diceFail-button");
+    const diceFailLabel = document.querySelector("#diceFail-label");
+
+
+    loadFields() // Initialisiere das Spielfeld
+
+
+    figureForm.style.display = "none"; // Verstecke Figuren Auswahl
+    diceFailForm.style.display = "none"; // Verstecke Würfel Fehler
+
+
+
+
+
+    wurfButton.addEventListener("click", function(event) {
+        diceValue = rollDice(); 
+        player = playerSelect.value;
+        //console.log("isFirstMove",isFirstMove(player))
+        console.log("diceValue",diceValue)
+        if (isFirstMove(player) && diceValue != 6) {
+            diceFailForm.style.display = "block";
+            playerForm.style.display = "none";
+            diceFailLabel.innerHTML = `Du hast eine <strong>${diceValue}</strong> gewürfelt. Du musst eine 6 würfeln um eine Figur aus dem Haus zu bekommen.`
+            return;
+        }
+        figureForm.style.display = "block";
+        playerForm.style.display = "none";
+    })
+
+    figureButton.addEventListener("click", function(event) {
+        figure = figureSelect.value;
+        pushChange(diceValue,player,figure)
+
+        loadFields()
+        figureForm.style.display = "none";
+        playerForm.style.display = "block";
+
+    })
+
+    diceFailButton.addEventListener("click", function(event) {
+        playerForm.style.display = "block";
+        diceFailForm.style.display = "none";
+    })
+     
+});
+
+
+
+
+
+
+
+
+
+
 
 const changeGifValue = (url,value) => {
     const parts = url.split("/");

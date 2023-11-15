@@ -67,7 +67,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
 }
 
      def fullBoard() = Action {
-        Ok(views.html.fullBoard(gameController))
+        Ok(views.html.fullBoard())
      }
 
 
@@ -144,9 +144,14 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val figure = dataMap.getOrElse("figure", "")
     val diceVal = dataMap.getOrElse("diceVal", "")
 
+
+
+    println(gameController.nochAlle(player))
     if(gameController.nochAlle(player) && diceVal.toInt ==6){
+      println("6 gewürfelt")
       gameController.raus(player)
     } else {
+      println("move " + player +" "+ figure)
       gameController.move(gameController.getFigureFromField(player,figure.toInt),diceVal.toInt)
     }
     
