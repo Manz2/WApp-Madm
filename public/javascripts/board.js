@@ -1,8 +1,10 @@
 const API_BASE_URL = "http://localhost:9000";
 
+const SECOND = 1000
 
 const LOGGING = true
 const POLLING = true
+const POLLING_INVERVALL = 5 * SECOND
 
 /* Globale Variablen */
 let diceValue = 0;
@@ -25,8 +27,19 @@ const player2num = {
 /* Helper Functions */
 const loadFields = async () => {
     LOGGING ? console.log("loadFields") : null
-    const req = await fetch(API_BASE_URL + "/fieldsJson")
-    const response = await req.json()
+    const healthStatus = document.querySelector("#health");
+    const healthStatusText = document.querySelector("#health-text");
+    let response = null
+    try{
+        const req = await fetch(API_BASE_URL + "/fieldsJson")
+        response = await req.json()
+        healthStatus.style.backgroundColor = "green";
+        healthStatusText.innerHTML = "Connected"
+    } catch (e) {
+        LOGGING ? console.log(e) : null
+        healthStatus.style.backgroundColor = "red";
+        healthStatusText.innerHTML = "Disconnected"
+    }
     LOGGING ? console.log(response) : null
     fieldData = response
     const homefield = response.homeField
@@ -121,8 +134,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const diceImage = document.querySelector("#dice-image");
 
 
+
     loadFields() // Initialisiere das Spielfeld
-    POLLING ? setInterval(loadFields, 5000) : null // Konstantes Polling des Spielfelds
+    POLLING ? setInterval(loadFields, POLLING_INVERVALL) : null // Konstantes Polling des Spielfelds
 
 
     figureForm.style.display = "none"; // Verstecke Figuren Auswahl

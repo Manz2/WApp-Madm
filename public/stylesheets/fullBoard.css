@@ -277,3 +277,20 @@ option{
     display: inline-block;
 }
 
+#health-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto auto;
+    color: white;
+    width: 180px;;
+}
+
+#health {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 99px;
+    margin-right: 5px;
+}
+

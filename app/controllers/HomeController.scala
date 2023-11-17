@@ -127,6 +127,15 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     Ok(views.html.startGame())
   }
 
+  def health() = Action {
+    Ok("OK")
+  }
+
+  def resetGame() = Action {
+    gameController.newGame(4)
+    Ok("OK")
+  }
+
 
   def getFields() = Action {
     println(gameController.player.data)
@@ -135,7 +144,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
     Ok(Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson))
   }
-  TODO
   def updateFields() = Action(parse.json) { request =>
     println(request.body)
   request.body.validate[Map[String, String]].map {

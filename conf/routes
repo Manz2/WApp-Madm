@@ -36,6 +36,10 @@ GET /fieldsJson                      controllers.HomeController.getFields()
 
 POST /fieldsJson                     controllers.HomeController.updateFields()
 
+GET /health                         controllers.HomeController.health()
+
+GET /resetGame                      controllers.HomeController.resetGame()
+
 
 # POST /fieldsJson                     controllers.HomeController.updateFields()
 
