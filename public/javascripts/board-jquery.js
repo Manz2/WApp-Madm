@@ -27,18 +27,22 @@ const player2num = {
 /* Helper Functions */
 const loadFields = async () => {
     LOGGING ? console.log("loadFields") : null
-    const healthStatus = document.querySelector("#health");
-    const healthStatusText = document.querySelector("#health-text");
+    const healthStatus = $("#health");
+    const healthStatusText = $("#health-text");
     let response = null
     try{
         const req = await fetch(API_BASE_URL + "/fieldsJson")
         response = await req.json()
-        healthStatus.style.backgroundColor = "green";
-        healthStatusText.innerHTML = "Connected"
+        //healthStatus.style.backgroundColor = "green";
+        healthStatus.css("background-color", "green")
+        //healthStatusText.innerHTML = "Connected"
+        healthStatusText.html("Connected")
     } catch (e) {
         LOGGING ? console.log(e) : null
-        healthStatus.style.backgroundColor = "red";
-        healthStatusText.innerHTML = "Disconnected"
+        //healthStatus.style.backgroundColor = "red";
+        healthStatus.css("background-color", "red")
+        //healthStatusText.innerHTML = "Disconnected"
+        healthStatusText.html("Disconnected")
     }
     LOGGING ? console.log(response) : null
     fieldData = response
@@ -48,8 +52,8 @@ const loadFields = async () => {
     for (let i = 1; i <= 40; i++) {
         const id = "#field-" + i
         const value = mainField[i - 1]
-        const ref = document.querySelector(id)
-        ref.innerHTML = value
+        const ref = $(id)
+        ref.html(value)
     }
 
     for (let i = 1; i < 5; i++) {
@@ -57,8 +61,8 @@ const loadFields = async () => {
             const id = `#p${j}-home-${i}`
             const index = (i + (j - 1) * 4) - 1
             const value = playerField[index]
-            const ref = document.querySelector(id)
-            ref.innerHTML = value
+            const ref = $(id)
+            ref.html(value)
         }
     }
 
@@ -67,8 +71,8 @@ const loadFields = async () => {
             const id = `#p${j}-final-${i}`
             const index = (i + (j - 1) * 4) - 1
             const value = homefield[index]
-            const ref = document.querySelector(id)
-            ref.innerHTML = value
+            const ref = $(id)
+            ref.html(value)
         }
     }
     LOGGING ? console.log("loadFields done") : null
@@ -118,21 +122,19 @@ const pushChange = async (diceValue, player, figure) => {
 
 
 // Warte bis DOM geladen wurde
-document.addEventListener("DOMContentLoaded", function (event) {
-
-
+$(document).ready(function () {
     /* Extract DOM Elements */
-    const playerForm = document.querySelector("#player-select-form");
-    const figureForm = document.querySelector("#figure-select-form");
-    const diceFailForm = document.querySelector("#diceFail-form");
-    const wurfButton = document.querySelector("#wurf-button");
-    const figureButton = document.querySelector("#figure-button");
-    const playerSelect = document.querySelector("#player-select");
-    const figureSelect = document.querySelector("#figure-select");
-    const diceFailButton = document.querySelector("#diceFail-button");
-    const diceFailLabel = document.querySelector("#diceFail-label");
-    const diceImage = document.querySelector("#dice-image");
-    const newGameButton = document.querySelector("#resetGame");
+    const playerForm = $("#player-select-form");
+    const figureForm = $("#figure-select-form");
+    const diceFailForm = $("#diceFail-form");
+    const wurfButton = $("#wurf-button");
+    const figureButton = $("#figure-button");
+    const playerSelect = $("#player-select");
+    const figureSelect = $("#figure-select");
+    const diceFailButton = $("#diceFail-button");
+    const diceFailLabel = $("#diceFail-label");
+    const diceImage = $("#dice-image");
+    const newGameButton = $("#resetGame");
 
 
 
@@ -140,47 +142,43 @@ document.addEventListener("DOMContentLoaded", function (event) {
     POLLING ? setInterval(loadFields, POLLING_INVERVALL) : null // Konstantes Polling des Spielfelds
 
 
-    figureForm.style.display = "none"; // Verstecke Figuren Auswahl
-    diceFailForm.style.display = "none"; // Verstecke Würfel Fehler
+    figureForm.css("display", "none")
+    diceFailForm.css("display", "none")
 
 
-
-    newGameButton.addEventListener("click", async function (event) {
+    newGameButton.click(async function (event) {
         await fetch(API_BASE_URL + "/resetGame")
         await loadFields()
     })
 
 
 
-
-    wurfButton.addEventListener("click", function (event) {
+    wurfButton.click(function (event) {
         diceValue = rollDice();
-        player = playerSelect.value;
+        player = playerSelect.val();
         LOGGING ? console.log("diceValue", diceValue) : null
         if (isFirstMove(player) && diceValue != 6) {
-            diceFailForm.style.display = "block";
-            playerForm.style.display = "none";
-            diceFailLabel.innerHTML = `Du hast eine <strong>${diceValue}</strong> gewürfelt. Du musst eine 6 würfeln um eine Figur aus dem Haus zu bekommen.`
+            diceFailForm.css("display", "block")
+            playerForm.css("display", "none");
+            diceFailLabel.html(`Du hast eine <strong>${diceValue}</strong> gewürfelt. Du musst eine 6 würfeln um eine Figur aus dem Haus zu bekommen.`)
             return;
         }
-        figureForm.style.display = "block";
-        diceImage.src = assignDiceImage(diceValue)
-        playerForm.style.display = "none";
+        figureForm.css("display", "block");
+        diceImage.attr("src", assignDiceImage(diceValue))
+        playerForm.css("display", "none");
     })
-
-    figureButton.addEventListener("click", async function (event) {
-        figure = figureSelect.value;
+    figureButton.click(async function(event){
+        figure = figureSelect.val()
         await pushChange(diceValue, player, figure)
 
         await loadFields()
-        figureForm.style.display = "none";
-        playerForm.style.display = "block";
+        figureForm.css("display", "none");
+        playerForm.css("display", "block");
 
     })
-
-    diceFailButton.addEventListener("click", function (event) {
-        playerForm.style.display = "block";
-        diceFailForm.style.display = "none";
+    diceFailButton.click(function(event){
+        playerForm.css("display", "block");
+        diceFailForm.css("display", "none");
     })
 
 });
@@ -189,11 +187,3 @@ document.addEventListener("DOMContentLoaded", function (event) {
 const assignDiceImage = (diceValue) => {
     return `/assets/images/dice/${diceValue}.svg`
 }
-
-
-
-
-
-
-
-

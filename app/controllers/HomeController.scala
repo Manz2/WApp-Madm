@@ -23,7 +23,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       request => 
         var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
         gameController.newGame(req)
-        Ok(views.html.fullBoardWurf(gameController))
+        Ok(views.html.fullBoard())
      }
      
      def showFields() = Action {
