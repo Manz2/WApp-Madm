@@ -23,7 +23,6 @@ const player2num = {
 }
 
 
-
 /* Helper Functions */
 const loadFields = async () => {
     LOGGING ? console.log("loadFields") : null
@@ -180,6 +179,23 @@ $(document).ready(function () {
         playerForm.css("display", "block");
         diceFailForm.css("display", "none");
     })
+
+
+    var socket = new WebSocket("ws://localhost:9000/ws")
+    socket.onopen = function (event) {
+        console.log("socket open")
+    }
+
+    socket.onmessage = function (message) {
+        console.log("message=",message)
+    }
+    socket.onerror = function (error) {
+        console.log("error=",error)
+    }
+    socket.onclose = function () {
+        console.log("socket close")
+    }
+
 
 });
 

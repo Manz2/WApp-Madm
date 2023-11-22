@@ -7,18 +7,51 @@ import de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl._
 import java.lang.ProcessBuilder.Redirect
 import play.api.libs.json._
 import play.api.libs.json.Json
+import akka.actor._
+import play.api.libs.streams.ActorFlow
+import akka.actor.ActorSystem
+import akka.stream.Materializer
 //import de.htwg.se.malefiz.Malefiz
 //import de.htwg.se.malefiz.controller.controllerComponent._
 /**
  * This controller creates an `Action` to handle HTTP requests to the
  * application's home page.
  */
+
+
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+class HomeController @Inject()(val controllerComponents: ControllerComponents,implicit val system: ActorSystem) extends BaseController {
     val gameController = new Controller()
     var diceVal = 0;
     var player = "A"
     gameController.newGame(4)
+
+    class MadnActor(out: ActorRef ) extends Actor  {
+      def receive = {
+        case msg: String =>
+          out ! ("I received your message: " + msg)
+      }
+      def sendJsonToClient() = {
+        val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
+        val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
+        val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
+        out ! Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson)
+      }
+    }
+
+      object MadnActorFactory {
+        def create(out : ActorRef) = {
+          Props(new MadnActor(out))
+        }
+      }
+
+      def socket = WebSocket.accept[String, String] { request =>
+        ActorFlow.actorRef { out => 
+          //println("Connect received")
+          MadnActorFactory.create(out)
+        }
+      }
+
      def newGame() = Action {
       request => 
         var req = request.body.asFormUrlEncoded.get("anzahl").mkString.toInt
