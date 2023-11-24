@@ -26,12 +26,12 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
     var player = "A"
     gameController.newGame(4)
 
-    class MadnActor(out: ActorRef ) extends Actor  {
+    class MadnActor(out: ActorRef ) extends Actor   {
       def receive = {
         case msg: String =>
           out ! ("I received your message: " + msg)
       }
-      def sendJsonToClient() = {
+      def sendJsonToClient  = {
         val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
         val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
         val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
@@ -45,11 +45,10 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
         }
       }
 
-      def socket = WebSocket.accept[String, String] { request =>
-        ActorFlow.actorRef { out => 
-          //println("Connect received")
-          MadnActorFactory.create(out)
-        }
+
+      def socket = WebSocket.accept[String, String] =  { request: RequestHeader =>
+        println(request)
+        ActorFlow.actorRef(out => MadnActorFactory.create(out))
       }
 
      def newGame() = Action {
