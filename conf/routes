@@ -40,7 +40,7 @@ GET /health                         controllers.HomeController.health()
 
 GET /resetGame                      controllers.HomeController.resetGame()
 
-GET /websocket                      controllers.HomeController.socket()
+GET /websocket                      controllers.HomeController.socket
 
 
 # POST /fieldsJson                     controllers.HomeController.updateFields()
