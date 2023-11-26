@@ -46,7 +46,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
       }
 
 
-      def socket = WebSocket.accept[String, String] =  { request: RequestHeader =>
+      def socket = WebSocket.accept[String, String]   { request: RequestHeader =>
         println(request)
         ActorFlow.actorRef(out => MadnActorFactory.create(out))
       }

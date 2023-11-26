@@ -181,7 +181,7 @@ $(document).ready(function () {
     })
 
 
-    var socket = new WebSocket("ws://localhost:9000/ws")
+    var socket = new WebSocket("ws://localhost:9000/websocket")
     socket.onopen = function (event) {
         console.log("socket open")
     }
