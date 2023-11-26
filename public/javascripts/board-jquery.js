@@ -180,23 +180,22 @@ $(document).ready(function () {
         diceFailForm.css("display", "none");
     })
 
+    const connectWebsocket = () => {
+        var socket = new WebSocket("ws://localhost:9000/websocket")
+        socket.onopen = function (event) {
+            console.log("socket open")
+        }
 
-    var socket = new WebSocket("ws://localhost:9000/websocket")
-    socket.onopen = function (event) {
-        console.log("socket open")
+        socket.onmessage = function (message) {
+            console.log("message=",message)
+        }
+        socket.onerror = function (error) {
+            console.log("error=",error)
+        }
+        socket.onclose = function () {
+            console.log("socket close")
+        }
     }
-
-    socket.onmessage = function (message) {
-        console.log("message=",message)
-    }
-    socket.onerror = function (error) {
-        console.log("error=",error)
-    }
-    socket.onclose = function () {
-        console.log("socket close")
-    }
-
-
 });
 
 
