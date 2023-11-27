@@ -114,7 +114,22 @@ const pushChange = async (diceValue, player, figure) => {
 
 
 
+const connectWebsocket = () => {
+    var socket = new WebSocket("ws://localhost:9000/websocket")
+    socket.onopen = function (event) {
+        console.log("***socket open", event)
+    }
 
+    socket.onmessage = function (message) {
+        console.log("***message=",message)
+    }
+    socket.onerror = function (error) {
+        console.log("***error=",error)
+    }
+    socket.onclose = function () {
+        console.log("***socket close")
+    }
+}
 
 
 
@@ -135,6 +150,8 @@ $(document).ready(function () {
     const diceImage = $("#dice-image");
     const newGameButton = $("#resetGame");
 
+
+    connectWebsocket()
 
 
     loadFields() // Initialisiere das Spielfeld
@@ -180,22 +197,7 @@ $(document).ready(function () {
         diceFailForm.css("display", "none");
     })
 
-    const connectWebsocket = () => {
-        var socket = new WebSocket("ws://localhost:9000/websocket")
-        socket.onopen = function (event) {
-            console.log("socket open")
-        }
-
-        socket.onmessage = function (message) {
-            console.log("message=",message)
-        }
-        socket.onerror = function (error) {
-            console.log("error=",error)
-        }
-        socket.onclose = function () {
-            console.log("socket close")
-        }
-    }
+   
 });
 
 

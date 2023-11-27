@@ -11,6 +11,8 @@ import akka.actor._
 import play.api.libs.streams.ActorFlow
 import akka.actor.ActorSystem
 import akka.stream.Materializer
+import scala.swing.Reactor
+import scala.swing.Publisher
 //import de.htwg.se.malefiz.Malefiz
 //import de.htwg.se.malefiz.controller.controllerComponent._
 /**
@@ -21,22 +23,37 @@ import akka.stream.Materializer
 
 @Singleton
 class HomeController @Inject()(val controllerComponents: ControllerComponents,implicit val system: ActorSystem) extends BaseController {
+  /* Implement this in the old repo 
+
+
+    class PubController extends Controller with Publisher {
+      publish(new Controller)
+    }
+
+    */
+
+
+
+
     val gameController = new Controller()
     var diceVal = 0;
     var player = "A"
     gameController.newGame(4)
 
-    class MadnActor(out: ActorRef ) extends Actor   {
+    class MadnActor(out: ActorRef ) extends Actor with Reactor  {
+      //listenTo(gameController)
       def receive = {
         case msg: String =>
           out ! ("I received your message: " + msg)
       }
+
       def sendJsonToClient  = {
         val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
         val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
         val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
         out ! Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson)
       }
+
     }
 
       object MadnActorFactory {
