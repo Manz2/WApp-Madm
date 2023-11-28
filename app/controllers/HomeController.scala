@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 import play.api._
 import play.api.mvc._
+import de.htwg.se.madn.Controller.controllerComponent._
 import de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl._
 import java.lang.ProcessBuilder.Redirect
 import play.api.libs.json._
@@ -41,10 +42,16 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
     gameController.newGame(4)
 
     class MadnActor(out: ActorRef ) extends Actor with Reactor  {
-      //listenTo(gameController)
+      listenTo(gameController)
       def receive = {
         case msg: String =>
           out ! ("I received your message: " + msg)
+      }
+
+      reactions += {
+        case event: Changed => 
+          out ! ("I received your event: ")
+          print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa")
       }
 
       def sendJsonToClient  = {
