@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:9000";
 const SECOND = 1000
 
 const LOGGING = true
-const POLLING = true
+const POLLING = false
 const POLLING_INVERVALL = 1 * SECOND
 
 /* Globale Variablen */

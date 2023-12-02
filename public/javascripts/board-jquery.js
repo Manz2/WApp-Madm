@@ -3,8 +3,13 @@ const API_BASE_URL = "http://localhost:9000";
 const SECOND = 1000
 
 const LOGGING = true
-const POLLING = true
-const POLLING_INVERVALL = 5 * SECOND
+var POLLING = true
+var SOCKET = !POLLING
+var POLLING_INVERVALL = 0.5 * SECOND
+var SOCKET_INVERVALL = POLLING_INVERVALL 
+let SOCKET_OPEN = false
+var SOCKET_TIMER = null
+var SOCKET_REF = null
 
 /* Globale Variablen */
 let diceValue = 0;
@@ -22,10 +27,9 @@ const player2num = {
     "D": 3
 }
 
-
-/* Helper Functions */
 const loadFields = async () => {
     LOGGING ? console.log("loadFields") : null
+    console.log({POLLING,POLLING_INVERVALL})
     const healthStatus = $("#health");
     const healthStatusText = $("#health-text");
     let response = null
@@ -35,19 +39,33 @@ const loadFields = async () => {
         //healthStatus.style.backgroundColor = "green";
         healthStatus.css("background-color", "green")
         //healthStatusText.innerHTML = "Connected"
-        healthStatusText.html("Connected")
+        healthStatusText.html("REST Connected")
     } catch (e) {
         LOGGING ? console.log(e) : null
         //healthStatus.style.backgroundColor = "red";
         healthStatus.css("background-color", "red")
         //healthStatusText.innerHTML = "Disconnected"
-        healthStatusText.html("Disconnected")
+        healthStatusText.html("REST Disconnected")
+        return null
+    } finally{
+        return JSON.stringify(response)
     }
-    LOGGING ? console.log(response) : null
-    fieldData = response
-    const homefield = response.homeField
-    const playerField = response.playerField
-    const mainField = response.fieldField
+}
+
+const loadRest = async () => {
+    const fields = await loadFields()
+    await assignFields(fields)
+}
+
+/* Helper Functions */
+const assignFields = async  (_fields) => {
+    const fields = JSON.parse(_fields)
+    LOGGING ? console.log("***fields",typeof(fields)) : null
+    
+    fieldData = fields
+    const homefield = fields.homeField
+    const playerField = fields.playerField
+    const mainField = fields.fieldField
     for (let i = 1; i <= 40; i++) {
         const id = "#field-" + i
         const value = mainField[i - 1]
@@ -75,8 +93,8 @@ const loadFields = async () => {
         }
     }
     LOGGING ? console.log("loadFields done") : null
-
 }
+
 
 const isFirstMove = (player) => {
     const playerNum = player2num[player]
@@ -116,19 +134,39 @@ const pushChange = async (diceValue, player, figure) => {
 
 const connectWebsocket = () => {
     var socket = new WebSocket("ws://localhost:9000/websocket")
+    SOCKET_REF = socket
+    const healthStatus = $("#health");
+    const healthStatusText = $("#health-text");
     socket.onopen = function (event) {
         console.log("***socket open", event)
+        SOCKET_OPEN = true
+        healthStatus.css("background-color", "green")
+        healthStatusText.html("WS Connected")
     }
 
     socket.onmessage = function (message) {
-        console.log("***message=",message)
+        const payload = message.data
+        assignFields(payload)
+        healthStatus.css("background-color", "green")
+        healthStatusText.html("WS Connected")
     }
     socket.onerror = function (error) {
         console.log("***error=",error)
     }
     socket.onclose = function () {
         console.log("***socket close")
+        SOCKET_OPEN = false
+        healthStatus.css("background-color", "red")
+        healthStatusText.html("Disconnected")
     }
+}
+
+const checkAndReconnect = () => {
+    if (!SOCKET_OPEN) {
+        LOGGING ? console.log("Reconnecting websocket...") : null
+        connectWebsocket()
+    }
+    SOCKET_TIMER = setTimeout(checkAndReconnect, SOCKET_INVERVALL)
 }
 
 
@@ -149,13 +187,20 @@ $(document).ready(function () {
     const diceFailLabel = $("#diceFail-label");
     const diceImage = $("#dice-image");
     const newGameButton = $("#resetGame");
+    const healthBox = $("#health-box")
+    const healthModal = $("#health-modal")
+    const connectionMode = $("#connection-mode")
+    const connectionTimer = $("#connection-timer")
+    const healthModalClose = $("#health-modal-close")
+    const healtModalSave = $("#health-modal-save")
+    const connectionTimerValue = $("#connection-timer-value")
 
 
-    connectWebsocket()
 
 
-    loadFields() // Initialisiere das Spielfeld
-    POLLING ? setInterval(loadFields, POLLING_INVERVALL) : null // Konstantes Polling des Spielfelds
+    POLLING ? loadRest() : null // Initialisiere das Spielfeld
+    var pollingTimer = POLLING ? setInterval(loadRest, POLLING_INVERVALL) : null // Konstantes Polling des Spielfelds
+    SOCKET ? checkAndReconnect() : null// Socket handling
 
 
     figureForm.css("display", "none")
@@ -164,7 +209,7 @@ $(document).ready(function () {
 
     newGameButton.click(async function (event) {
         await fetch(API_BASE_URL + "/resetGame")
-        await loadFields()
+        POLLING ? await loadRest() : null
     })
 
 
@@ -187,7 +232,7 @@ $(document).ready(function () {
         figure = figureSelect.val()
         await pushChange(diceValue, player, figure)
 
-        await loadFields()
+        POLLING ? await loadRest() : null
         figureForm.css("display", "none");
         playerForm.css("display", "block");
 
@@ -195,6 +240,43 @@ $(document).ready(function () {
     diceFailButton.click(function(event){
         playerForm.css("display", "block");
         diceFailForm.css("display", "none");
+    })
+    healthBox.click(function(event){
+        healthModal.modal("show")
+    })
+    connectionTimer.val(POLLING_INVERVALL / SECOND)
+    connectionTimerValue.html(POLLING_INVERVALL / SECOND)
+    POLLING ? connectionMode.val("REST") : connectionMode.val("WS")
+    healthModalClose.click(function(event){
+        healthModal.modal("hide")
+    })
+    healtModalSave.click(function(event){
+        const mode = connectionMode.select().val()
+        const timer = connectionTimer.val()
+        LOGGING ? console.log({mode, timer}) : null
+        if (mode === "WS" ){
+                POLLING = true
+                console.log("-----")
+                clearInterval(pollingTimer)
+                checkAndReconnect()
+                return 
+        } else if (mode === "REST"){
+            clearInterval(pollingTimer)
+            POLLING_INVERVALL = timer * SECOND
+            pollingTimer = setInterval(loadRest, POLLING_INVERVALL)
+            POLLING = false
+        } else {
+            alert("Mode not supported")
+        }
+        POLLING_INVERVALL = timer * SECOND
+        healthModal.modal("hide")
+        console.log(POLLING_INVERVALL)
+        console.log(POLLING)
+    })
+
+    connectionTimer.on("input", function(event){
+        var timerValue = connectionTimer.val()
+        connectionTimerValue.html(timerValue)
     })
 
    
