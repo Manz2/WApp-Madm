@@ -4,7 +4,7 @@ const SECOND = 1000
 
 const LOGGING = true
 const POLLING = true
-const POLLING_INVERVALL = 5 * SECOND
+const POLLING_INVERVALL = 1 * SECOND
 
 /* Globale Variablen */
 let diceValue = 0;

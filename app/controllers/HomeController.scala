@@ -50,18 +50,16 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
 
       reactions += {
         case event: Changed => 
-          out ! ("I received your event: ")
-          print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaa")
+          out ! sendJsonToClient
       }
+    }
 
       def sendJsonToClient  = {
         val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
         val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
         val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
-        out ! Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson)
+        Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson).toString
       }
-
-    }
 
       object MadnActorFactory {
         def create(out : ActorRef) = {
@@ -194,7 +192,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
 
 
   def getFields() = Action {
-    println(gameController.player.data)
     val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
     val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
     val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
@@ -208,14 +205,9 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
     val figure = dataMap.getOrElse("figure", "")
     val diceVal = dataMap.getOrElse("diceVal", "")
 
-
-
-    println(gameController.nochAlle(player))
     if(gameController.nochAlle(player) && diceVal.toInt ==6){
-      println("6 gewürfelt")
       gameController.raus(player)
     } else {
-      println("move " + player +" "+ figure)
       gameController.move(gameController.getFigureFromField(player,figure.toInt),diceVal.toInt)
     }
     
