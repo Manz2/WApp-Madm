@@ -157,10 +157,15 @@ export default {
     },
     async fetchFromAPI() {
       console.log("fetch...");
+      try{
       const res = await axios.get("http://localhost:9000/fieldsJson");
       if (res.status == 200) {
         const data = res.data;
         this.assignFromValues(data);
+      }
+      } catch(err){
+        alert("Server nicht erreichbar")
+        this.stopPolling()
       }
     },
     assignFromValues(fullBoardValues) {
@@ -224,13 +229,27 @@ export default {
           </div>
         </div>
       </div>
-      <div class="col-sm-6 connect ">
+      <div class="col-sm-6 connect">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">API-POLLING</h5>
             <p class="card-text">Poll data from Webserver</p>
-            <input class="input" type="number" v-model="pollingInterval" step="0.1" max="10" min="0.1" />
-            <input type="range" class="form-range" min="0.1" max="10" step="0.1" v-model="pollingInterval">
+            <input
+              class="input"
+              type="number"
+              v-model="pollingInterval"
+              step="0.1"
+              max="10"
+              min="0.1"
+            />
+            <input
+              type="range"
+              class="form-range"
+              min="0.1"
+              max="10"
+              step="0.1"
+              v-model="pollingInterval"
+            />
             <button
               class="btn btn-primary"
               v-if="!pollingRef"
@@ -275,11 +294,11 @@ h1 {
   margin-right: 5%;
 }
 .card {
-    width: 300px;
+  width: 300px;
 }
 
 .connect {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 </style>
