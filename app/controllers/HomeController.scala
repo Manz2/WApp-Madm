@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 import play.api._
 import play.api.mvc._
+import de.htwg.se.madn.Controller.controllerComponent._
 import de.htwg.se.madn.Controller.controllerComponent.controllerBaseImpl._
 import java.lang.ProcessBuilder.Redirect
 import play.api.libs.json._
@@ -11,6 +12,8 @@ import akka.actor._
 import play.api.libs.streams.ActorFlow
 import akka.actor.ActorSystem
 import akka.stream.Materializer
+import scala.swing.Reactor
+import scala.swing.Publisher
 //import de.htwg.se.malefiz.Malefiz
 //import de.htwg.se.malefiz.controller.controllerComponent._
 /**
@@ -21,23 +24,42 @@ import akka.stream.Materializer
 
 @Singleton
 class HomeController @Inject()(val controllerComponents: ControllerComponents,implicit val system: ActorSystem) extends BaseController {
+  /* Implement this in the old repo 
+
+
+    class PubController extends Controller with Publisher {
+      publish(new Controller)
+    }
+
+    */
+
+
+
+
     val gameController = new Controller()
     var diceVal = 0;
     var player = "A"
     gameController.newGame(4)
 
-    class MadnActor(out: ActorRef ) extends Actor   {
+    class MadnActor(out: ActorRef ) extends Actor with Reactor  {
+      listenTo(gameController)
       def receive = {
         case msg: String =>
           out ! ("I received your message: " + msg)
       }
+
+      reactions += {
+        case event: Changed => 
+          out ! sendJsonToClient
+      }
+    }
+
       def sendJsonToClient  = {
         val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
         val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
         val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
-        out ! Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson)
+        Json.obj("playerField" -> playerFieldJson, "homeField" -> homeFieldJson, "fieldField" -> fieldFieldJson).toString
       }
-    }
 
       object MadnActorFactory {
         def create(out : ActorRef) = {
@@ -170,7 +192,6 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
 
 
   def getFields() = Action {
-    println(gameController.player.data)
     val playerFieldJson = Json.toJson(gameController.player.data.map(_.toString))
     val homeFieldJson = Json.toJson(gameController.home.data.map(_.toString))
     val fieldFieldJson = Json.toJson(gameController.field.data.map(_.toString))
@@ -184,14 +205,9 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents,im
     val figure = dataMap.getOrElse("figure", "")
     val diceVal = dataMap.getOrElse("diceVal", "")
 
-
-
-    println(gameController.nochAlle(player))
     if(gameController.nochAlle(player) && diceVal.toInt ==6){
-      println("6 gewürfelt")
       gameController.raus(player)
     } else {
-      println("move " + player +" "+ figure)
       gameController.move(gameController.getFigureFromField(player,figure.toInt),diceVal.toInt)
     }
     
