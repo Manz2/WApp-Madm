@@ -1,5 +1,6 @@
 <script>
 import {RouterLink} from 'vue-router'
+import axios from 'axios'
 export default {
     name: 'HomeView',
     components: {
@@ -13,7 +14,11 @@ export default {
     methods: {
         startGame() {
             // TODO: 
+            axios.get('http://localhost:9000/resetGame')
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
             this.$router.push('/board')
+
         }
     }
 }

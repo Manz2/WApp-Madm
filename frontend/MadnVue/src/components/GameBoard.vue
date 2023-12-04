@@ -1,259 +1,199 @@
 
 <script>
+import BoardCell from "./BoardCell.vue";
+import axios from "axios";
 export default {
-    name: 'GameBoard',
-    components: {
-    },
-    data(){
-        return {
-            fieldData : null
-        }
-    },
-    methods: {
-        assignFromValues(fullBoardValues){
-            console.log("assignFromValues")
-            /* TODO
-            const homefield = fullBoardValues.homeField
-            const playerField = fullBoardValues.playerField
-            const mainField = fullBoardValues.fieldField
-            for (let i = 1; i <= 40; i++) {
-                const id = "#field-" + i
-                const value = mainField[i - 1]
-                const ref = document.querySelector(id)
-                ref.innerHTML = value
-            }
-
-            for (let i = 1; i < 5; i++) {
-                for (let j = 1; j < 5; j++) {
-                    const id = `#p${j}-home-${i}`
-                    const index = (i + (j - 1) * 4) - 1
-                    const value = playerField[index]
-                    const ref = document.querySelector(id)
-                    ref.innerHTML = value
-                }
-            }
-
-            for (let i = 1; i < 5; i++) {
-                for (let j = 1; j < 5; j++) {
-                    const id = `#p${j}-final-${i}`
-                    const index = (i + (j - 1) * 4) - 1
-                    const value = homefield[index]
-                    const ref = document.querySelector(id)
-                    ref.innerHTML = value
-                }
-            }
-        */
-        },
-    },
-    created(){
-        this.assignFromValues()
-    }
-}
+  name: "GameBoard",
+  components: {
+    BoardCell,
+  },
+  props: {
+    field: Object,
+  },
+  
+};
 </script>
 
 <template>
-    <div class="grid-container">
-            <div class="grid-item p1" id="p1-home-1"></div>
-            <div class="grid-item p1" id="p1-home-2"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-9"></div>
-            <div class="grid-item" id="field-10" ></div>
-            <div class="grid-item p2" id="field-11"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item p2" id="p2-home-1"></div>
-            <div class="grid-item p2" id="p2-home-2"></div>
+  <div class="grid-container">
+    <BoardCell :text="field.p1.home[0]" :hidden="false" />
+    <BoardCell :text="field.p1.home[1]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[8]" :hidden="false" />
+    <BoardCell :text="field.free[9]" :hidden="false" />
+    <BoardCell :text="field.free[10]" :hidden="false" color="B" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.p2.home[0]" :hidden="false" />
+    <BoardCell :text="field.p2.home[1]" :hidden="false" />
 
-            <div class="grid-item p1" id="p1-home-3"></div>
-            <div class="grid-item p1" id="p1-home-4"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-8"></div>
-            <div class="grid-item p2" id="p2-final-1"></div>
-            <div class="grid-item" id="field-12"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item p2" id="p2-home-3"></div>
-            <div class="grid-item p2" id="p2-home-4"></div>
+    <BoardCell :text="field.p1.home[2]" :hidden="false" />
+    <BoardCell :text="field.p1.home[3]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[7]" :hidden="false" />
+    <BoardCell :text="field.p2.final[0]" :hidden="false" color="B" />
+    <BoardCell :text="field.free[11]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.p2.home[2]" :hidden="false" />
+    <BoardCell :text="field.p2.home[3]" :hidden="false" />
 
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden player-name">A</div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-7"></div>
-            <div class="grid-item p2" id="p2-final-2"></div>
-            <div class="grid-item" id="field-13"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden player-name">B</div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="A" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[6]" :hidden="false" />
+    <BoardCell :text="field.p2.final[1]" :hidden="false" color="B" />
+    <BoardCell :text="field.free[12]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="B" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
 
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-6"></div>
-            <div class="grid-item p2" id="p2-final-3"></div>
-            <div class="grid-item" id="field-14"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[5]" :hidden="false" />
+    <BoardCell :text="field.p2.final[2]" :hidden="false" color="B" />
+    <BoardCell :text="field.free[13]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
 
-            <div class="grid-item p1" id="field-1"></div>
-            <div class="grid-item" id="field-2"></div>
-            <div class="grid-item" id="field-3"></div>
-            <div class="grid-item" id="field-4"></div>
-            <div class="grid-item" id="field-5"></div>
-            <div class="grid-item p2" id="p2-final-4"></div>
-            <div class="grid-item" id="field-15"></div>
-            <div class="grid-item" id="field-16"></div>
-            <div class="grid-item" id="field-17"></div>
-            <div class="grid-item" id="field-18"></div>
-            <div class="grid-item" id="field-19"></div>
+    <BoardCell :text="field.free[0]" :hidden="false" color="A" />
+    <BoardCell :text="field.free[1]" :hidden="false" />
+    <BoardCell :text="field.free[2]" :hidden="false" />
+    <BoardCell :text="field.free[3]" :hidden="false" />
+    <BoardCell :text="field.free[4]" :hidden="false" />
+    <BoardCell :text="field.p2.final[3]" :hidden="false" color="B" />
+    <BoardCell :text="field.free[15]" :hidden="false" />
+    <BoardCell :text="field.free[15]" :hidden="false" />
+    <BoardCell :text="field.free[16]" :hidden="false" />
+    <BoardCell :text="field.free[17]" :hidden="false" />
+    <BoardCell :text="field.free[18]" :hidden="false" />
 
-            <div class="grid-item" id="field-40"></div>
-            <div class="grid-item p1" id="p1-final-1"></div>
-            <div class="grid-item p1" id="p1-final-2"></div>
-            <div class="grid-item p1" id="p1-final-3"></div>
-            <div class="grid-item p1" id="p1-final-4"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item p4" id="p4-final-4"></div>
-            <div class="grid-item p4" id="p4-final-3"></div>
-            <div class="grid-item p4" id="p4-final-2"></div>
-            <div class="grid-item p4" id="p4-final-1"></div>
-            <div class="grid-item" id="field-20"></div>
+    <BoardCell :text="field.free[39]" :hidden="false" />
+    <BoardCell :text="field.p1.final[0]" :hidden="false" color="A" />
+    <BoardCell :text="field.p1.final[1]" :hidden="false" color="A" />
+    <BoardCell :text="field.p1.final[2]" :hidden="false" color="A" />
+    <BoardCell :text="field.p1.final[3]" :hidden="false" color="A" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.p4.final[3]" :hidden="false" color="C" />
+    <BoardCell :text="field.p4.final[2]" :hidden="false" color="C" />
+    <BoardCell :text="field.p4.final[1]" :hidden="false" color="C" />
+    <BoardCell :text="field.p4.final[0]" :hidden="false" color="C" />
+    <BoardCell :text="field.free[19]" :hidden="false" />
 
+    <BoardCell :text="field.free[38]" :hidden="false" />
+    <BoardCell :text="field.free[37]" :hidden="false" />
+    <BoardCell :text="field.free[36]" :hidden="false" />
+    <BoardCell :text="field.free[35]" :hidden="false" />
+    <BoardCell :text="field.free[34]" :hidden="false" />
+    <BoardCell :text="field.p3.final[3]" :hidden="false" />
+    <BoardCell :text="field.free[24]" :hidden="false" />
+    <BoardCell :text="field.free[23]" :hidden="false" />
+    <BoardCell :text="field.free[22]" :hidden="false" />
+    <BoardCell :text="field.free[21]" :hidden="false" />
+    <BoardCell :text="field.free[20]" :hidden="false" color="C" />
 
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[33]" :hidden="false" />
+    <BoardCell :text="field.p3.final[2]" :hidden="false" color="D" />
+    <BoardCell :text="field.free[25]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
 
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="D" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[32]" :hidden="false" />
+    <BoardCell :text="field.p3.final[1]" :hidden="false" color="D" />
+    <BoardCell :text="field.free[26]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="C" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
 
-            <div class="grid-item" id="field-39"></div>
-            <div class="grid-item" id="field-38"></div>
-            <div class="grid-item" id="field-37"></div>
-            <div class="grid-item" id="field-36"></div>
-            <div class="grid-item" id="field-35"></div>
-            <div class="grid-item p3" id="p3-final-4"></div>
-            <div class="grid-item" id="field-25"></div>
-            <div class="grid-item" id="field-24"></div>
-            <div class="grid-item" id="field-23"></div>
-            <div class="grid-item" id="field-22"></div>
-            <div class="grid-item p4" id="field-21"></div>
+    <BoardCell :text="field.p3.home[0]" :hidden="false" />
+    <BoardCell :text="field.p3.home[1]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[31]" :hidden="false" />
+    <BoardCell :text="field.p3.final[0]" :hidden="false" color="D" />
+    <BoardCell :text="field.free[27]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.p4.home[0]" :hidden="false" />
+    <BoardCell :text="field.p4.home[1]" :hidden="false" />
 
-
-
-
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-34"></div>
-            <div class="grid-item p3" id="p3-final-3"></div>
-            <div class="grid-item" id="field-26"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden player-name">D</div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-33"></div>
-            <div class="grid-item p3" id="p3-final-2"></div>
-            <div class="grid-item" id="field-27"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden player-name">C</div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-
-
-            <div class="grid-item p3" id="p3-home-1"></div>
-            <div class="grid-item p3" id="p3-home-2"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item" id="field-32"></div>
-            <div class="grid-item p3" id="p3-final-1"></div>
-            <div class="grid-item" id="field-28"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item p4" id="p4-home-1"></div>
-            <div class="grid-item p4" id="p4-home-2"></div>
-
-            <div class="grid-item p3" id="p3-home-3"></div>
-            <div class="grid-item p3" id="p3-home-4"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item p3" id="field-31" ></div>
-            <div class="grid-item" id="field-30"></div>
-            <div class="grid-item" id="field-29"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item hidden"></div>
-            <div class="grid-item p4" id="p4-home-3"></div>
-            <div class="grid-item p4" id="p4-home-4"></div>
-
-        </div>
+    <BoardCell :text="field.p3.home[2]" :hidden="false" />
+    <BoardCell :text="field.p3.home[3]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.free[30]" :hidden="false" color="D" />
+    <BoardCell :text="field.free[29]" :hidden="false" />
+    <BoardCell :text="field.free[28]" :hidden="false" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell text="" :hidden="true" />
+    <BoardCell :text="field.p4.home[2]" :hidden="false" />
+    <BoardCell :text="field.p4.home[3]" :hidden="false" />
+  </div>
 </template>
 
 <style scoped>
-.container{
-    text-align: center;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.container {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(11, 30px); 
-    grid-gap: 10px; 
-    padding: 20px; 
-    background: #FFFEBA;
-    border: solid red 1px;
-    border-radius: 5%;
-    box-shadow: red 0px 0px 4px;
+  display: grid;
+  grid-template-columns: repeat(11, 30px);
+  grid-gap: 10px;
+  padding: 20px;
+  background: #fffeba;
+  border: solid red 1px;
+  border-radius: 5%;
+  box-shadow: red 0px 0px 4px;
 }
 
 /* CSS für die Zellen */
 .grid-item {
-    width: 30px;
-    height: 30px;
-    border: 1px solid #000; /* Rand um jede Zelle */
-    text-align: center;
-    line-height: 30px;
-    font-size: 14px;
-    border-radius: 99%;
-    background: #FFFFFF;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000; /* Rand um jede Zelle */
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  border-radius: 99%;
+  background: #ffffff;
 }
 
 .grid-item:hover {
-    background: #40488F;
-    cursor: pointer;
-    border: solid white 1px;
+  background: #40488f;
+  cursor: pointer;
+  border: solid white 1px;
 }
 
 .hidden {
-    border: none;
-    background: #FFFEBA;;
+  border: none;
+  background: #fffeba;
 }
 .hidden:hover {
-    border: none;
-    cursor: default;
-    background: #FFFEBA;;
-}
-
-.p1{ /* Spieler A */
-    background-color: #009DFF;
-}
-
-.p2{ /* Spieler B */
-    background-color: #FF0000;
-}
-
-.p3{ /* Spieler C */
-    background-color: #FFFC00;
-}
-.p4{ /* Spieler D */
-    background-color: #00BF02;
+  border: none;
+  cursor: default;
+  background: #fffeba;
 }
 </style>

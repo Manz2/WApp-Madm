@@ -22,18 +22,18 @@ export default {
 
 <template>
 <div class="card">
-    <div class="card-body">
-        <h3>{{diceValue}} gewürfelt</h3>
-        <button class="btn btn-primary" @click="confirm">Nochmal Würfeln</button>
-    </div>
+  <h5 class="card-header">Achtung!</h5>
+  <div class="card-body">
+    <h5 class="card-title">Du hast eine {{ diceValue }} gewürfelt</h5>
+    <p class="card-text">Du musst eine 6 würfel da du keinen Spieler draußen hast</p>
+    <button @click="confirm" class="btn btn-primary">Nochmal probieren</button>
+  </div>
 </div>
 </template>
 
 
 <style scoped>
-div {
-    width: 200px;
-    height: 300px;
-    background:red ;
+.card-body {
+    margin-top: 2%;
 }
 </style>
