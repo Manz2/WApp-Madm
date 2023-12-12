@@ -79,9 +79,11 @@ export default {
         console.log("[open] Connection established");
         this.socketActive = true;
       };
-      this.socketRef.onmessage = function (event) {
-        console.log(`[message] Data received from server: ${event.data}`);
-      };
+      this.socketRef.onmessage = (event) => {
+      console.log(`[message] Data received from server: ${event.data}`);
+      const data = event.data
+      this.assignFromValues(JSON.parse(data))
+};
       this.socketRef.onerror = function (error) {
         console.log(`[error] ${error.message}`);
       };
@@ -174,6 +176,7 @@ export default {
       /* Player C -> P3 */
       /* Player D -> P4 */
       console.log("assignFromValues");
+      
       const fieldField = fullBoardValues.fieldField;
       this.field.free = fieldField.slice(0, 40);
 
