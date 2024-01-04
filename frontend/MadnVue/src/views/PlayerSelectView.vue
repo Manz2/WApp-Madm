@@ -1,31 +1,26 @@
 <script>
-import {RouterLink} from 'vue-router'
 import axios from 'axios'
 export default {
-    name: 'HomeView',
-    components: {
-        RouterLink
-    },
-    data(){
-        return {
-            playerValue: 0
-        }
-    },
-    methods: {
-        startGame() {
-            // TODO: 
-            axios.get('http://localhost:9000/resetGame')
-                .then(res => console.log(res))
-                .catch(err => console.log(err))
-            this.$router.push('/board')
-
-        }
+  name: 'HomeView',
+  components: {
+  },
+  data () {
+    return {
+      playerValue: 0
     }
+  },
+  methods: {
+    startGame () {
+      // TODO:
+      axios.get('http://localhost:9000/resetGame')
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+      this.$router.push('/board')
+    }
+  }
 }
 
 </script>
-
-
 
 <template>
 <div>
@@ -33,7 +28,7 @@ export default {
     <div class="input-group">
         <span class="input-group-text">Anzahl Spieler</span>
         <input type="number" v-model="playerValue" min="0" max="4" step="1" aria-label="Anzahl Spieler" class="form-control">
-    </div> 
+    </div>
         <button class="btn btn-primary" @click="startGame" >Starte das Spiel</button>
 </div>
 </template>

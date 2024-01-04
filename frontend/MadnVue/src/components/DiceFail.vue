@@ -1,24 +1,22 @@
 <script>
 export default {
-    name: 'DiceFail',
-    components: {
-    },
-    data(){
-        return {
-        }
-    },
-    methods: {
-        confirm() {
-            this.$emit('confirm')
-        }
-    },
-    props: {
-        diceValue: Number
-    },
+  name: 'DiceFail',
+  components: {
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+    confirm () {
+      this.$emit('confirm')
+    }
+  },
+  props: {
+    diceValue: Number
+  }
 }
 </script>
-
-
 
 <template>
 <div class="card">
@@ -30,7 +28,6 @@ export default {
   </div>
 </div>
 </template>
-
 
 <style scoped>
 .card-body {

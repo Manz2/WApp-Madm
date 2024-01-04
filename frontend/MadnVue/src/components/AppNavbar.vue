@@ -26,7 +26,6 @@
   </nav>
 </template>
 
-
 <style scoped>
     .navbar-brand{
         margin-left: 10px;
@@ -41,7 +40,7 @@
         justify-content:center;
         margin-left: 30px;
         margin-right: 30px;;
-    
+
     }
     #navbarNav ul{
         display: flex;
@@ -51,7 +50,7 @@
 
     .nav-item:hover{
       text-decoration: underline;
-      text-decoration-color: #007bff; 
+      text-decoration-color: #007bff;
     }
 
 </style>

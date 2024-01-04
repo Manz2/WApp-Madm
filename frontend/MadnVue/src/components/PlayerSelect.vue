@@ -1,27 +1,26 @@
 <script >
-import DiceGif from "../assets/wuerfel/DiceGif.gif"
+import DiceGif from '../assets/wuerfel/DiceGif.gif'
 export default {
-    name: 'PlayerSelect',
-    components: {
-    },
-    data(){
-        return {
-            gifSrc : DiceGif,
-            playerSelected : null,
-        }
-    },
-    methods: {
-        confirm() {
-            if(this.playerSelected == null){
-                alert("Bitte wähle einen Spieler aus!")
-                return 
-            }
-            this.$emit('assignPlayer', this.playerSelected)
-        }
+  name: 'PlayerSelect',
+  components: {
+  },
+  data () {
+    return {
+      gifSrc: DiceGif,
+      playerSelected: null
     }
+  },
+  methods: {
+    confirm () {
+      if (this.playerSelected == null) {
+        alert('Bitte wähle einen Spieler aus!')
+        return
+      }
+      this.$emit('assignPlayer', this.playerSelected)
+    }
+  }
 }
 </script>
-
 
 <template>
 <div class="card">
@@ -34,11 +33,10 @@ export default {
             <option>D</option>
           </select>
           <button id="wurf-button" class="btn btn-primary shake-btn" @click="confirm">Würfeln</button>
-        </div> 
+        </div>
       <img id="gif-1" class="dice-gif" :src="gifSrc" alt="dice" />
 </div>
 </template>
-
 
 <style scoped>
 .card {

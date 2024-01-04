@@ -15,7 +15,7 @@
                 <div class="accordion-body">
                     <li><b>Player</b>: Wartefeld der Figuren</li>
                     <li><b>Home</b>: Finales Feld der Figuren</li>
-                    <li><b>Field</b>: Eigentliches Spielfeld</li> 
+                    <li><b>Field</b>: Eigentliches Spielfeld</li>
                 </div>
               </div>
             </div>

@@ -1,17 +1,16 @@
 
 <script>
-import BoardCell from "./BoardCell.vue";
-import axios from "axios";
+import BoardCell from './BoardCell.vue'
 export default {
-  name: "GameBoard",
+  name: 'GameBoard',
   components: {
-    BoardCell,
+    BoardCell
   },
   props: {
-    field: Object,
-  },
-  
-};
+    field: Object
+  }
+
+}
 </script>
 
 <template>
