@@ -5,32 +5,32 @@
 
 # An example controller showing a sample home page
  + nocsrf
-GET     /                           controllers.HomeController.about()
+# GET     /                           controllers.HomeController.about()
 
-GET     /startGame                  controllers.HomeController.startGame()
+# GET     /startGame                  controllers.HomeController.startGame()
 
-GET /fullBoardWurf                  controllers.HomeController.fullBoardWurf()
-
-
-POST /newMove                       controllers.HomeController.newMove()
-
-POST  /fullBoardGo                  controllers.HomeController.fullBoardGo()
+# GET /fullBoardWurf                  controllers.HomeController.fullBoardWurf()
 
 
-POST /newGame                       controllers.HomeController.newGame()
+# POST /newMove                       controllers.HomeController.newMove()
 
-POST /turn                         controllers.HomeController.turn()
-
-POST /go                            controllers.HomeController.go()
+# POST  /fullBoardGo                  controllers.HomeController.fullBoardGo()
 
 
-GET /about                          controllers.HomeController.about()
+# POST /newGame                       controllers.HomeController.newGame()
 
-GET /fields                         controllers.HomeController.showFields()
+# POST /turn                         controllers.HomeController.turn()
+
+# POST /go                            controllers.HomeController.go()
+
+
+# GET /about                          controllers.HomeController.about()
+
+# GET /fields                         controllers.HomeController.showFields()
 
 # New -----
 
-GET /fullBoard                     controllers.HomeController.fullBoard()
+# GET /fullBoard                     controllers.HomeController.fullBoard()
 
 GET /fieldsJson                      controllers.HomeController.getFields()
 
