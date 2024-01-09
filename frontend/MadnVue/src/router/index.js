@@ -22,6 +22,11 @@ const router = createRouter({
       path: '/playerSelect',
       name: 'playerSelect',
       component: () => import('../views/PlayerSelectView.vue')
+    },
+    {
+      path: '/offline',
+      name: 'OfflinePage',
+      component: () => import('../views/OfflinePage.vue')
     }
   ]
 })
