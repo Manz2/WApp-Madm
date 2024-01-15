@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-madnvue-dev-170331-authRole",
+      "UnauthRoleArn": "arn:aws:iam::314420430476:role/amplify-madnvue-dev-170331-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::314420430476:role/amplify-madnvue-dev-170331-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-madnvue-dev-170331-deployment",
+      "UnauthRoleName": "amplify-madnvue-dev-170331-unauthRole",
+      "StackName": "amplify-madnvue-dev-170331",
+      "StackId": "arn:aws:cloudformation:eu-central-1:314420430476:stack/amplify-madnvue-dev-170331/4d30cba0-b22d-11ee-99cb-02035e2de245",
+      "AmplifyAppId": "d3rdchefnvqaky"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      },
+      "auth": {
+        "madnvue21c60223": {}
+      }
+    }
+  }
+}

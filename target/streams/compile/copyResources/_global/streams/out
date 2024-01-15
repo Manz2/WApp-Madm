@@ -1,0 +1,5 @@
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/sebastiankaeser/Study/WApp-Madm/conf/logback.xml,/Users/sebastiankaeser/Study/WApp-Madm/target/scala-2.13/classes/logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/sebastiankaeser/Study/WApp-Madm/conf/messages,/Users/sebastiankaeser/Study/WApp-Madm/target/scala-2.13/classes/messages)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/sebastiankaeser/Study/WApp-Madm/conf/application.conf,/Users/sebastiankaeser/Study/WApp-Madm/target/scala-2.13/classes/application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/Users/sebastiankaeser/Study/WApp-Madm/conf/routes,/Users/sebastiankaeser/Study/WApp-Madm/target/scala-2.13/classes/routes)[0m

@@ -1,6 +1,27 @@
 <script>
 import {RouterLink} from 'vue-router'
+import { getCurrentUser } from 'aws-amplify/auth'
+import { ref } from 'vue'
 
+export default {
+    name: "Home",
+    components: {
+        RouterLink
+    },
+    setup() {
+        const loggedIn = ref(false)
+        const isLoggedIn = async () => {
+            try{
+                const user = await getCurrentUser()
+                loggedIn.value = true   
+            }
+            catch(err){
+                loggedIn.value = false
+            }
+        }
+        isLoggedIn()
+    }
+};
 
 </script>
 
@@ -9,7 +30,8 @@ import {RouterLink} from 'vue-router'
 <template>
 <div>
     <h1>Welcome to Mensch Ärgere dich nicht</h1>
-    <router-link to="/playerSelect" class="btn btn-primary">Klicke hier um zu starten</router-link>
+    <router-link v-if="loggedIn" to="/playerSelect" class="btn btn-primary">Klicke hier um zu starten</router-link>
+    <router-link v-else to="/auth" class="btn btn-primary">Klicke hier um dich anzumelden</router-link>
 </div>
 </template>
 

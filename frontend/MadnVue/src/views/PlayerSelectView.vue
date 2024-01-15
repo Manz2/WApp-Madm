@@ -1,6 +1,7 @@
 <script>
 import {RouterLink} from 'vue-router'
 import axios from 'axios'
+const API_BASE_URL = "https://madn-backend-aa5ba5459298.herokuapp.com"
 export default {
     name: 'HomeView',
     components: {
@@ -14,7 +15,7 @@ export default {
     methods: {
         startGame() {
             // TODO: 
-            axios.get('http://localhost:9000/resetGame')
+            axios.get(`${API_BASE_URL}/resetGame`)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
             this.$router.push('/board')

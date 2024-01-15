@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("../images/wuerfel-background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: left;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: #555;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* Link-Stile */
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Abschnittsstil */
+.section {
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Autorenliste */
+.author-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.author-list li {
+    margin-bottom: 10px;
+}
+
+@media(max-width: 1500px) {
+    body {
+    height: 100vh; /* Die volle Höhe des Viewports verwenden */
+    background-image: url("../images/wuerfel-background.png");
+    background-size: cover; /* Das Bild wird so skaliert, dass der gesamte Hintergrund abgedeckt wird */
+    background-position: center center; /* Das Bild wird zentriert positioniert */
+    background-attachment: fixed; /* Das Bild bleibt beim Scrollen fixiert */
+    }
+}

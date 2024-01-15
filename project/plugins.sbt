@@ -3,3 +3,5 @@ addSbtPlugin("org.foundweekends.giter8" % "sbt-giter8-scaffold" % "0.13.1")
 addSbtPlugin("io.github.irundaia" % "sbt-sassify" % "1.5.2")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.7.6")
+
+addSbtPlugin("com.heroku" % "sbt-heroku" % "2.0.0")

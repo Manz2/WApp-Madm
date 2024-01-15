@@ -3,6 +3,8 @@ organization := "com.example"
 
 version := "1.0-SNAPSHOT"
 
+herokuAppName in Compile := "madn-backend"
+
 lazy val root = (project in file(".")).enablePlugins(PlayScala,JavaAppPackaging)
 
 scalaVersion := "2.13.12"

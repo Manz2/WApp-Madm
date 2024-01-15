@@ -1,4 +1,7 @@
 import './assets/main.css'
+import { Amplify } from 'aws-amplify'
+import config from '@/amplifyconfiguration.json'
+Amplify.configure(config)
 
 import { createApp } from 'vue'
 import App from './App.vue'

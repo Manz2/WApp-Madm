@@ -1,3 +1,4 @@
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <router-link class="navbar-brand" to="/">Mensch Ärgere dich nicht</router-link>
@@ -8,6 +9,9 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <router-link to="/" class="nav-link">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/auth" class="nav-link">Profil</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/playerSelect" class="nav-link">New Game</router-link>

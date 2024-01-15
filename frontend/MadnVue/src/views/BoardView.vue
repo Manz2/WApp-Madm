@@ -5,6 +5,8 @@ import FigureSelect from "../components/FigureSelect.vue";
 import PlayerSelect from "../components/PlayerSelect.vue";
 import GameBoard from "../components/GameBoard.vue";
 import axios from "axios";
+const API_BASE_URL = "https://madn-backend-aa5ba5459298.herokuapp.com";
+const API_NAME = "madn-backend-aa5ba5459298.herokuapp.com"
 const range = (start, end, element) => {
   let array = [];
   for (let i = start; i <= end - 1; i++) {
@@ -73,7 +75,7 @@ export default {
       this.pollingRef = null;
     },
     startWS() {
-      this.socketRef = new WebSocket("ws://localhost:9000/websocket");
+      this.socketRef = new WebSocket(`wss://${API_NAME}/websocket`);
       this.socketActive = true;
       this.socketRef.onopen = function (e) {
         console.log("[open] Connection established");
@@ -131,7 +133,7 @@ export default {
         diceVal: this.diceValue.toString(),
       };
       axios
-        .post("http://localhost:9000/fieldsJson", payload)
+        .post(`${API_BASE_URL}/fieldsJson`, payload)
         .then((res) => {
           this.fetchFromAPI();
         })
@@ -160,7 +162,7 @@ export default {
     async fetchFromAPI() {
       console.log("fetch...");
       try{
-      const res = await axios.get("http://localhost:9000/fieldsJson");
+      const res = await axios.get(`${API_BASE_URL}/fieldsJson`);
       if (res.status == 200) {
         const data = res.data;
         this.assignFromValues(data);

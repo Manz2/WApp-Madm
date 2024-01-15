@@ -1,0 +1,296 @@
+body {
+    background-color: #eee;;    
+    background: rgb(255,254,186);
+background: radial-gradient(circle, rgba(255,254,186,1) 68%, rgba(0,191,5,1) 96%);
+    background-image: url("../images/wuerfel-background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Ubuntu', sans-serif;
+}
+.container{
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(11, 30px); 
+    grid-gap: 10px; 
+    padding: 20px; 
+    background: #FFFEBA;
+    border: solid red 1px;
+    border-radius: 5%;
+    box-shadow: red 0px 0px 4px;
+}
+
+/* CSS für die Zellen */
+.grid-item {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000; /* Rand um jede Zelle */
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+    border-radius: 99%;
+    background: #FFFFFF;
+}
+
+.grid-item:hover {
+    background: #40488F;
+    cursor: pointer;
+    border: solid white 1px;
+}
+
+.hidden {
+    border: none;
+    background: #FFFEBA;;
+}
+.hidden:hover {
+    border: none;
+    cursor: default;
+    background: #FFFEBA;;
+}
+
+.p1{ /* Spieler A */
+    background-color: #009DFF;
+}
+
+.p2{ /* Spieler B */
+    background-color: #FF0000;
+}
+
+.p3{ /* Spieler C */
+    background-color: #FFFC00;
+}
+.p4{ /* Spieler D */
+    background-color: #00BF02;
+}
+
+#heading {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: lightgray;
+}
+
+.player-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#inputs {
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0px 0px 4px #000;
+    background-color: lightblue;
+    width: 240px;
+    height: 280px;
+    margin-left: 20px;
+    max-width: 250px;
+    min-width: 250px;
+}
+#inputs input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 48%;
+    text-align: center;
+    margin-top: 11px;
+}
+
+.wurf-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wurf-form label,
+.wurf-form select {
+    margin-bottom: 10px;
+}
+
+.wurf-form select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 48%;
+    text-align: center;
+    margin-top: 11px;
+}
+.wurf-form text {
+    margin-top: 40px;
+}
+
+.button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 48%;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-2 {
+    margin-top: 30px;
+    left: 100px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+
+.img {
+    width: 80%;
+    text-align: center;
+  }
+#inputs .dice-gif {
+    padding-top: 10px;
+    height: 80px ;
+}
+
+.short-message{
+    display: none;
+}
+
+
+@media(max-width: 850px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(11, 30px); 
+        grid-gap: 10px; 
+        padding: 20px; 
+        border-radius: 5%;
+        max-width: 480px;
+    }
+
+    /* CSS für die Zellen */
+    .grid-item {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 99%;
+    }
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .inputs {
+       margin: auto auto;
+    }
+
+  
+    .grid-container {
+        margin-bottom: 100px;
+    }
+}
+
+@media(max-width: 500px) {
+    .container {
+        display: none;
+    }
+    .short-message {
+        margin-top: 40px;
+        display: block;
+        color: white;
+        background-color:  hsla(0, 0%, 0%, 0.5);
+        border: red 1px solid;
+        text-align: center;
+    }
+    #heading {
+        display: none;
+    }
+}
+
+
+
+/* Bootstrap Tuning */
+
+.form-group {
+    width: 200px;
+    height: 250px;
+    background: lightblue;
+    margin: auto 40px;
+    padding: 20px 10px;
+    margin-bottom: 20px; 
+    border-radius: 10px;
+}
+option{
+    text-align: center;
+}
+
+.form-group .btn {
+    margin-top: 10px;
+}
+
+.dice-gif {
+    padding-top: 10px;
+    height: 80px ;
+}
+
+#box-dynamic {
+    text-align: center;
+    overflow: hidden;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+
+}
+.img-dynamic {
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+}
+
+
+
+/* JS - Abgabe */
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-2px, 0px) rotate(1deg); }
+    30% { transform: translate(1px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-1px, 1px) rotate(0deg); }
+    70% { transform: translate(2px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(2px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.short-shake {
+    animation: shake 0.8s;
+    display: inline-block;
+}
+
+#health-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto auto;
+    color: white;
+    width: 180px;;
+}
+
+#health {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 99px;
+    margin-right: 5px;
+}
+
